@@ -1,7 +1,28 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
+import { Sidebar } from './Sidebar'
 
 export const Nav = () => {
+
+  
+
   return (
-    <div>Nav</div>
+    <>
+      <nav className="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
+        <div className="container-fluid py-1 px-3">
+          <nav aria-label="breadcrumb">
+            <h6 className="font-weight-bolder mb-0"></h6>
+          </nav>
+          <div className="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+            <div className="ms-md-auto pe-md-3 d-flex align-items-center">
+              <div className="input-group">
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+    </>
   )
 }

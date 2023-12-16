@@ -9,6 +9,9 @@ import { PrivateLayout } from '../components/layout/private/PrivateLayout'
 import { Consumo } from '../components/user/Consumo'
 import { Logout } from '../components/user/Logout'
 import { Profile } from '../components/user/Profile'
+import { Footer } from '../components/layout/public/Footer'
+import { Gastos } from '../components/user/Gastos'
+import { Dashboard } from '../components/user/Dashboard'
 
 export const Routing = () => {
     return (
@@ -23,10 +26,13 @@ export const Routing = () => {
                     </Route>
 
                     <Route path='/auth' element={<PrivateLayout></PrivateLayout>}>
-                        <Route index element={<Consumo></Consumo>}></Route>
+                        <Route index element={<Dashboard></Dashboard>}></Route>
+                        <Route path='dashboard' element={<Dashboard></Dashboard>}></Route>
                         <Route path='consumo' element={<Consumo></Consumo>}></Route>
+                        <Route path='gastos' element={<Gastos></Gastos>}></Route>
                         <Route path='logout'element={<Logout></Logout>}></Route>
                         <Route path='perfil' element={<Profile></Profile>}></Route>
+                        
                     </Route>
                     
                     <Route path='*' element={<><h1><p>Error 404 <Link to="/">Volver Al inicio</Link></p></h1></>}></Route>

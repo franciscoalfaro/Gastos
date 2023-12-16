@@ -20,9 +20,9 @@ export const PublicLayout = () => {
   return (
     <>
       <Header></Header>
-      <div className='container'>
+      
         {!auth._id ? <Outlet></Outlet> : <Navigate to="/auth"></Navigate>}
-      </div>
+      
 
     </>
   )

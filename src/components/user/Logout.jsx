@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 
 export const Logout = () => {
-  const {setAuth} = useAuth
+  const {setAuth} = useAuth()
   const navigate = useNavigate()
 
   useEffect( ()=>{
