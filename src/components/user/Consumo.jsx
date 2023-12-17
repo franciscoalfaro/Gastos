@@ -4,14 +4,25 @@ import ReactTimeAgo from 'react-time-ago'
 import { NavLink } from 'react-router-dom';
 import { Global } from '../../helpers/Global';
 
-export const Consumo = () => {
+
+
+
+export const Consumo = ({actualizarLista, updateTrigger}) => {
+  
 
   const { auth } = useAuth()
   const [dataGasto, setDataGasto] = useState([])
+  const [gastoDelete, setGastoDelete] = useState([])
+  const [actualizacion, setActualizacion] = useState(false);
 
   useEffect(() => {
     gastoData()
-  }, [])
+  }, [gastoDelete])
+
+  useEffect(() => {
+    
+  }, [updateTrigger,actualizarLista])
+
 
   const gastoData = async () => {
     try {
@@ -32,12 +43,12 @@ export const Consumo = () => {
 
 
   //eliminar gastos
-  const deleteGasto = async (gastoId) => {
-
+  const deleteGasto = async(gastoId)=>{
+     
     try {
-      const request = await fetch(Global.url + 'bills/delete/' + gastoId, {
-        method: 'DELETE',
-        headers: {
+      const request = await fetch(Global.url + 'bills/delete/'+ gastoId,{
+        method:'DELETE',
+        headers:{
           'Content-Type': 'application/json',
           'Authorization': localStorage.getItem('token')
         }
@@ -47,14 +58,15 @@ export const Consumo = () => {
 
       //console.log(data.message)
 
-      if (data.status === 'success') {
+      if(data.status ==='success'){
         console.log(data.message)
-        actualizarLista()
+        setGastoDelete(data)
+  
       }
-
+      
     } catch (error) {
       console.error('Error al obtener los datos:', error);
-
+      
     }
 
 

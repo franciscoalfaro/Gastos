@@ -1,26 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Sidebar } from './Sidebar'
 
+import '../../../assets/css/barranav.css'
+
 export const Nav = () => {
 
-  
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+
 
   return (
     <>
-      <nav className="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
-        <div className="container-fluid py-1 px-3">
-          <nav aria-label="breadcrumb">
-            <h6 className="font-weight-bolder mb-0"></h6>
-          </nav>
-          <div className="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-            <div className="ms-md-auto pe-md-3 d-flex align-items-center">
-              <div className="input-group">
-              
-              </div>
-            </div>
-          </div>
+      <nav className="navbar">
+        <div className="menu-toggle" onClick={toggleMenu}>
+          <span className="bar">Inicio</span>
+          <span className="bar">Servicios</span>
+          <span className="bar">Acerca de</span>
         </div>
+        <ul className={`nav-list ${isOpen ? 'menu-open' : ''}`}>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Servicios</a></li>
+          <li><a href="#">Acerca de</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
       </nav>
 
     </>
