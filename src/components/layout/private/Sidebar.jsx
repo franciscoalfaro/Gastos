@@ -1,6 +1,6 @@
 import React from 'react'
 
-import userImages from '../../../assets/img/logo-ct-dark.png'
+import userImages from '../../../assets/img/small-logos/icon.svg'
 import { NavLink } from 'react-router-dom'
 
 export const Sidebar = () => {
@@ -10,7 +10,7 @@ export const Sidebar = () => {
       <aside className="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
         <div className="sidenav-header">
           <i className="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-          <NavLink className="navbar-brand m-0" href=" https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html">
+          <NavLink className="navbar-brand m-0" to='/auth/dashboard'>
             <img src={userImages} className="navbar-brand-img h-100" alt="main_logo"></img>
             <span className="ms-1 font-weight-bold">Como Gasto</span>
           </NavLink>
@@ -86,7 +86,7 @@ export const Sidebar = () => {
               <NavLink className="nav-link" to="/auth/perfil">
                 <div className="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                   <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
-                    <title>customer-support</title>
+                    <title></title>
                     <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                       <g transform="translate(-1717.000000, -291.000000)" fill="#FFFFFF" fillRule="nonzero">
                         <g transform="translate(1716.000000, 291.000000)">
@@ -108,7 +108,7 @@ export const Sidebar = () => {
               <NavLink className="nav-link"  to="/auth/logout">
                 <div className="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                   <svg width="12px" height="20px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
-                    <title>spaceship</title>
+                    <title></title>
                     <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                       <g transform="translate(-1720.000000, -592.000000)" fill="#FFFFFF" fillRule="nonzero">
                         <g transform="translate(1716.000000, 291.000000)">

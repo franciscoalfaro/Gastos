@@ -290,7 +290,7 @@ export const Gastos = () => {
                       <div className="col-md-12 mb-md-0 mb-4">
                         <div className="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
                           <input type="text" name="name" className="form-control" placeholder="Nombre" aria-label="name" aria-describedby="email-addon" required onChange={changed} />
-                          <input type="text" name="description" className="form-control" placeholder="Descripcion" aria-label="description" aria-describedby="email-addon" required onChange={changed} />
+                          <input type="text" name="description" className="form-control" placeholder="Descripcion" aria-label="description" aria-describedby="email-addon" onChange={changed} />
                         </div>
                       </div>
                     </div>
