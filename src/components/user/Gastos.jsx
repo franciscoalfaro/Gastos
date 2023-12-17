@@ -39,7 +39,7 @@ export const Gastos = () => {
 
   useEffect(() => {
     listCategorias()
-  
+
   }, [newCategorias])
 
 
@@ -56,7 +56,7 @@ export const Gastos = () => {
 
       const data = await request.json()
 
-      if(data.status === "success"){
+      if (data.status === "success") {
         setCategorias(data.categorias)
 
       }
@@ -135,26 +135,26 @@ export const Gastos = () => {
     changed(event);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     generalTotal()
-  },[actualizarGastosList])
+  }, [actualizarGastosList])
 
-  const generalTotal = async() =>{
+  const generalTotal = async () => {
     try {
-      const request = await fetch(Global.url + 'total/generartotal/',{
-        method:'POST',
-        headers:{
+      const request = await fetch(Global.url + 'total/generartotal/', {
+        method: 'POST',
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': localStorage.getItem('token')
         }
       })
       const data = await request.json()
-      if(data.status === "success"){
+      if (data.status === "success") {
         setSaldos(data.total)
         setTotalGeneral(data)
       }
     } catch (error) {
-      
+
     }
   }
 
@@ -204,7 +204,9 @@ export const Gastos = () => {
                       <h6 className="text-center mb-0">Saldo Inicial</h6>
                       <span className="text-xs"></span>
                       <hr className="horizontal dark my-3"></hr>
-                      <h5 className="mb-0">${saldos.saldoInicial}</h5>
+                      <h5 className="mb-0">
+                        {saldos.saldoInicial ? `$${saldos.saldoInicial}` : "$0"}
+                      </h5>
                     </div>
                   </div>
                 </div>
@@ -219,7 +221,9 @@ export const Gastos = () => {
                       <h6 className="text-center mb-0">Saldo Actual</h6>
                       <span className="text-xs"></span>
                       <hr className="horizontal dark my-3"></hr>
-                      <h5 className="mb-0">${saldos.saldoInicial - saldos.gastoUtilizado }</h5>
+                      <h5 className="mb-0">
+                        ${saldos.saldoInicial !== undefined && saldos.gastoUtilizado !== undefined ? saldos.saldoInicial - saldos.gastoUtilizado : 0}
+                      </h5>
                     </div>
                   </div>
                 </div>
