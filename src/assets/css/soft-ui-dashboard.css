@@ -10825,6 +10825,8 @@ fieldset:disabled .btn {
 .rounded-circle,
 .avatar.rounded-circle img {
   border-radius: 50% !important;
+  height: 236px;
+  width: 236px;
 }
 
 .rounded-pill {

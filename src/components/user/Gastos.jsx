@@ -26,6 +26,7 @@ export const Gastos = () => {
   const [selectedOption, setSelectedOption] = useState('')
 
   const [totalGeneral, setTotalGeneral] = useState([])
+  const [saldos, setSaldos] = useState([])
 
   const actualizarListaDeGastos = () => {
     setActualizarGastosList(prevState => !prevState);
@@ -146,7 +147,7 @@ export const Gastos = () => {
       })
       const data = await request.json()
       if(data.status === "success"){
-        console.log(data.message)
+        setSaldos(data.total)
         setTotalGeneral(data)
       }
     } catch (error) {
@@ -200,7 +201,7 @@ export const Gastos = () => {
                       <h6 className="text-center mb-0">Saldo Inicial</h6>
                       <span className="text-xs"></span>
                       <hr className="horizontal dark my-3"></hr>
-                      <h5 className="mb-0">$20000</h5>
+                      <h5 className="mb-0">${saldos.saldoInicial}</h5>
                     </div>
                   </div>
                 </div>
@@ -215,7 +216,7 @@ export const Gastos = () => {
                       <h6 className="text-center mb-0">Saldo Actual</h6>
                       <span className="text-xs"></span>
                       <hr className="horizontal dark my-3"></hr>
-                      <h5 className="mb-0">$455</h5>
+                      <h5 className="mb-0">${saldos.saldoInicial - saldos.gastoUtilizado }</h5>
                     </div>
                   </div>
                 </div>

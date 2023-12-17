@@ -29,10 +29,10 @@ export const Dashboard = () => {
   }, [actualizacion])
 
 
-
   useEffect(() => {
     userData()
   }, [actualizacion])
+
 
 
   const userData = async () => {
@@ -67,6 +67,7 @@ export const Dashboard = () => {
       })
       const data = await request.json()
       setDataGasto(data.gastos)
+
 
 
     } catch (error) {
@@ -173,13 +174,21 @@ export const Dashboard = () => {
                       <div className="numbers">
                         <p className="text-sm mb-0 text-capitalize font-weight-bold">Último gasto</p>
                         <h5 className="font-weight-bolder mb-0">
-                        <span className="text-success text-sm font-weight-bolder">{dataGasto[dataGasto.length - 1].name}</span>
-                          <span className="text-success text-sm font-weight-bolder">{dataGasto[dataGasto.length - 1].valor}</span>
+                          {dataGasto
+                            .sort((a, b) => new Date(b.create_at) - new Date(a.create_at))
+                            .slice(0, 1)
+                            .map((gasto) => (
+                              <span key={gasto._id}>
+                                <span className="text-success text-sm font-weight-bolder">{gasto.name}</span>
+                                <span className="text-success text-sm font-weight-bolder">{gasto.valor}</span>
+                              </span>
+                            ))}
                         </h5>
                       </div>
                     ) : (
                       <span>No hay gastos registrados</span>
                     )}
+
 
                   </div>
                   <div className="col-4 text-end">
