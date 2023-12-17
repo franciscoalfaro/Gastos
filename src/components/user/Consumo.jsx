@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import useAuth from '../../hooks/useAuth'
 import ReactTimeAgo from 'react-time-ago'
 import { NavLink } from 'react-router-dom';
-import { Global } from '../../helpers/Global';
+import { Global } from '../../helpers/Global';           
 
-
+import imgCard from '../../assets/img/small-logos/contabilidad.png'
 
 
 export const Consumo = ({actualizarLista, updateTrigger}) => {
@@ -154,7 +154,7 @@ export const Consumo = ({actualizarLista, updateTrigger}) => {
                             <td>
                               <div className="d-flex px-2 py-1">
                                 <div>
-                                  <img src="../src/assets/img/small-logos/logo-slack.svg" className="avatar avatar-sm me-3" alt="xd" />
+                                  <img src={imgCard} className="avatar avatar-sm me-3" alt="xd" />
                                 </div>
                                 <div className="d-flex flex-column justify-content-center">
                                   <h6 className="mb-0 text-sm">{gasto.name}</h6>

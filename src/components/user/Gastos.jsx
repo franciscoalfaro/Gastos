@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import imgLogo from '../../assets/img/curved-images/curved14.jpg'
+import imgCard from '../../assets/img/logos/mastercard.png'
+
 import { NavLink } from 'react-router-dom';
 
 import { GastosList } from './GastosList';
@@ -7,6 +9,7 @@ import useAuth from '../../hooks/useAuth';
 import { useForm } from '../../hooks/useForm';
 import { Global } from '../../helpers/Global';
 import ReactTimeAgo from 'react-time-ago';
+
 
 const divStyle = {
   backgroundImage: `url(${imgLogo})`, // Establece la imagen como fondo
@@ -181,7 +184,7 @@ export const Gastos = () => {
                         </div>
                       </div>
                       <div className="ms-auto w-20 d-flex align-items-end justify-content-end">
-                        <img className="w-60 mt-2" src="../src/assets/img/logos/mastercard.png" alt="logo"></img>
+                        <img className="w-60 mt-2" src={imgCard} alt="logo"></img>
                       </div>
                     </div>
                   </div>
