@@ -1,0 +1,68 @@
+/* Estilo personalizado para el menú desplegable */
+.custom-nav {
+    display: none;
+    /* Por defecto, ocultamos el menú en pantallas grandes */
+
+}
+
+@media (max-width: 992px) {
+
+    /* Mostrar el menú en dispositivos más pequeños */
+    .custom-nav {
+        display: -webkit-inline-box;
+        background-color: #efeeee;
+        flex-direction: column; /* Alinear los enlaces verticalmente */
+        align-items: center; /* Centrar horizontalmente */
+        border-radius: 23px;
+        padding-left: 2rem;
+        margin-left: 12rem;
+        margin-top: 0.8rem;
+    }
+
+    .custom-nav .nav-link {
+        padding: 10px;
+        /* Añadir espaciado interno a los enlaces del menú */
+        color: #333;
+        /* Color del texto */
+        text-decoration: none;
+        /* Quitar subrayado de los enlaces */
+        transition: background-color 0.3s ease;
+        /* Transición de color al pasar el cursor */
+    }
+
+    .custom-nav .nav-link:hover {
+        background-color: #f0f0f0;
+        /* Cambio de color al pasar el cursor */
+    }
+}
+
+@media (max-width: 1366px) {
+
+    /* Mostrar el menú en dispositivos más pequeños */
+    .custom-nav {
+        display: -webkit-inline-box;
+        background-color: #efeeee;
+        flex-direction: column; /* Alinear los enlaces verticalmente */
+        align-items: center; /* Centrar horizontalmente */
+        border-radius: 23px;
+        padding-left: 2rem;
+        margin-left: 12rem;
+        margin-top: 0.8rem;
+    }
+
+    .custom-nav .nav-link {
+        padding: 10px;
+        /* Añadir espaciado interno a los enlaces del menú */
+        color: #333;
+        /* Color del texto */
+        text-decoration: none;
+        /* Quitar subrayado de los enlaces */
+        transition: background-color 0.3s ease;
+        /* Transición de color al pasar el cursor */
+    }
+
+    .custom-nav .nav-link:hover {
+        background-color: #f0f0f0;
+        /* Cambio de color al pasar el cursor */
+    }
+}
