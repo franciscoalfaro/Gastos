@@ -180,8 +180,8 @@ export const Dashboard = () => {
                             .slice(0, 1)
                             .map((gasto) => (
                               <span key={gasto._id}>
-                                <span className="text-success text-sm font-weight-bolder">{gasto.name}</span>
-                                <span className="text-success text-sm font-weight-bolder">{gasto.valor}</span>
+                                <span className="font-weight-bolder mb-0" >{gasto.name}</span>
+                                <span className="font-weight-bolder mb-0"> ${gasto.valor}</span>
                               </span>
                             ))}
                         </h5>
