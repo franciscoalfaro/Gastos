@@ -270,7 +270,7 @@ export const Dashboard = () => {
         </div>
 
         <div className="row mt-4">
-          <div className="col-lg-10 mb-lg-0 mb-4">
+          <div className="col-lg-8 mb-lg-0 mb-4">
             <div className="card z-index-2">
               <div className="card-header pb-0">
                 <h5>{capitalizeFirstLetter(auth.name)}</h5><h6>Tu gasto en los 12 meses</h6>
@@ -289,7 +289,7 @@ export const Dashboard = () => {
           </div>
 
 
-          <div className="col-lg-2">
+          <div className="col-lg-4">
             <div className="card z-index-2">
               <div className="card-header pb-0">
                 <h6>Registrar Saldo mes actual</h6>

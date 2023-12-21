@@ -180,7 +180,7 @@ export const Gastos = () => {
                         </div>
                         <div>
                           <p className="text-white text-sm opacity-8 mb-0">Cuenta Creada</p>
-                          <h6 className="text-white mb-0">{auth.create_at}</h6>
+                          <h6 className="text-white mb-0">{auth.create_at.split("T")[0]}</h6>
                         </div>
                       </div>
                       <div className="ms-auto w-20 d-flex align-items-end justify-content-end">
@@ -258,6 +258,7 @@ export const Gastos = () => {
                               <option key={item._id} value={item.name} >
                                 {item.name}
                               </option>
+                             
                             ))}
                           </select>
                         </div>
