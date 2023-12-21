@@ -1,29 +1,24 @@
-import React from 'react'
-import { Navigate, Outlet } from 'react-router-dom'
-import useAuth from '../../../hooks/useAuth'
-import {useNavigate} from 'react-router-dom'
-
-import { Header } from './Header'
+import React, { useEffect } from 'react';
+import { Navigate, Outlet, useNavigate } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
+import { Header } from './Header';
 
 export const PublicLayout = () => {
-  const { auth } = useAuth()
-  const navigate = useNavigate()
+  const { auth } = useAuth();
+  const navigate = useNavigate();
 
-
-  if (typeof auth === 'undefined') {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    navigate('/login')
-  }
-
+  useEffect(() => {
+    if (!auth) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      navigate('/login');
+    }
+  }, [auth, navigate]);
 
   return (
     <>
-      <Header></Header>
-      
-        {!auth._id ? <Outlet></Outlet> : <Navigate to="/auth"></Navigate>}
-      
-
+      <Header />
+      {auth && auth._id ? <Navigate to="/auth"></Navigate> : <Outlet></Outlet>}
     </>
-  )
-}
+  );
+};

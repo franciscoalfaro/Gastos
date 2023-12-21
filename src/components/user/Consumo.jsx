@@ -148,7 +148,7 @@ export const Consumo = ({actualizarLista, updateTrigger}) => {
                       </tr>
                     </thead>
                     <tbody>
-                      {dataGasto.length > 0 ? (
+                      {dataGasto && dataGasto.length > 0 ? (
                         dataGasto.map((gasto) => (
                           <tr key={gasto._id}>
                             <td>

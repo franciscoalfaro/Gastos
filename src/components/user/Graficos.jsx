@@ -30,7 +30,7 @@ const Grafico = () => {
 
     useEffect(() => {
 
-        if (consumos.length > 0) {
+        if (Array.isArray(consumos) && consumos.length > 0) {
             const ctx = document.getElementById("chart-bars").getContext("2d");
             const nombreMeses = [
                 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',

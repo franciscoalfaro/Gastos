@@ -171,7 +171,7 @@ export const Dashboard = () => {
               <div className="card-body p-3">
                 <div className="row">
                   <div className="col-8">
-                    {dataGasto.length > 0 ? (
+                    {dataGasto && dataGasto.length > 0 ?  (
                       <div className="numbers">
                         <p className="text-sm mb-0 text-capitalize font-weight-bold">Último gasto</p>
                         <h5 className="font-weight-bolder mb-0">
@@ -369,7 +369,7 @@ export const Dashboard = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {dataGasto.length > 0 ? (
+                      {dataGasto && dataGasto.length > 0 ?  (
                         dataGasto.map((gasto) => (
                           <tr key={gasto._id}>
                             <td>

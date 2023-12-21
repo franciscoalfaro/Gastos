@@ -1,5 +1,6 @@
 import React, { useState, useEffect, createContext } from 'react'
 import { Global } from '../helpers/Global'
+import { useNavigate } from 'react-router-dom'
 
 const AuthContext = createContext()
 
@@ -7,6 +8,7 @@ export const AuthProvider = ({ children }) => {
 
     const [auth, setAuth] = useState({})
     const [loading, setLoading] = useState(true)
+    const navigate = useNavigate();
 
     //se ejecuta la primera ves del provider
     useEffect(() => {
@@ -43,12 +45,17 @@ export const AuthProvider = ({ children }) => {
 
 
         const data = await request.json()
+        if (data.status === "success") {
+            //set el estado auth
+            setAuth(data.user)
+            setLoading(false)
 
+        } else if (data.status === "error") {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            navigate('/login');
 
-        //set el estado auth
-        setAuth(data.user)
-        setLoading(false)
-
+        }
     }
 
     return (
