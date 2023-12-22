@@ -44,7 +44,7 @@ export const Detalle = () => {
 
         // Crear HTML para el PDF con el detalle del mes seleccionado
         const detalleHTML = `
-        <h6 style="text-align: center; margin-bottom: 10px;" className="mb-1 text-dark font-weight-bold text-sm"> Mes ${detalleMes.mes} - Total Utilizado $${detalleMes.totalGastos}</h6>
+        <h6 style="text-align: center; margin-bottom: 10px;" className="mb-1 text-dark font-weight-bold text-sm"> Año ${detalleMes.ano} Mes ${detalleMes.mes} - Total Utilizado $${detalleMes.totalGastos}</h6>
         <table style="width: 100%; border-collapse: collapse; text-align: center;">
             <thead style="background-color: lightgray;">
                 <tr>
