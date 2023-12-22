@@ -22,6 +22,7 @@ export const Dashboard = () => {
   const [crearSaldo, setCrearSaldo] = useState([])
   const { form, changed } = useForm()
   const [actualizacion, setActualizacion] = useState(false);
+  const [selectedMonth, setSelectedMonth] = useState('');
 
 
 
@@ -139,6 +140,8 @@ export const Dashboard = () => {
   const capitalizeFirstLetter = (name) => {
     return name.replace(/^\w/, (c) => c.toUpperCase());
   };
+
+
 
   return (
     <>
@@ -299,7 +302,7 @@ export const Dashboard = () => {
                   <form id='saldo-form' onSubmit={registrarSaldo}>
                     <div className="text-sm">
                       <input type="text" name="montoMensual" htmlFor='montoMensual' className="form-control" placeholder="Saldo" aria-label="saldo" aria-describedby="saldo-addon" required defaultValue={dataUser?.montoMensual !== undefined ? dataUser.montoMensual : ''} onChange={changed}></input> <br></br>
-                      <input type="number" name="mes" htmlFor='mes' className="form-control" placeholder="Mes" aria-label="tope" aria-describedby="mes-addon" defaultValue={dataUser?.mes !== undefined ? dataUser.mes : ''} onChange={changed}></input><br></br>
+                      <input type="number" min="1" max="12" name="mes" htmlFor='mes' className="form-control" placeholder="Mes" aria-label="tope" aria-describedby="mes-addon" defaultValue={dataUser?.mes !== undefined ? dataUser.mes : ''} onChange={changed}></input><br></br>
                       <input type="text" name="tope1" htmlFor='tope1' className="form-control" placeholder="Primer Tope" aria-label="tope" aria-describedby="tope1-addon" defaultValue={dataUser?.tope1 !== undefined ? dataUser.tope1 : ''} onChange={changed}></input><br></br>
                       <input type="text" name="tope2" htmlFor='tope2' className="form-control" placeholder="Segundo Tope" aria-label="tope" aria-describedby="tope2-addon" defaultValue={dataUser?.tope2 !== undefined ? dataUser.tope2 : ''} onChange={changed}></input><br></br>
                       <input type="text" name="ano" htmlFor='ano' className="form-control" placeholder="Año" aria-label="ano" aria-describedby="ano-addon" defaultValue={dataUser?.ano !== undefined ? dataUser.ano : ''} onChange={changed}></input><br></br>
@@ -315,7 +318,7 @@ export const Dashboard = () => {
                   <form id='update-form' onSubmit={updateSaldo}>
                     <div className="text-sm">
                       <input type="text" name="montoMensual" htmlFor='montoMensual' className="form-control" placeholder="Saldo" aria-label="saldo" aria-describedby="saldo-addon" required defaultValue={dataUser?.montoMensual !== undefined ? dataUser.montoMensual : ''} onChange={changed}></input> <br></br>
-                      <input type="number" name="mes" htmlFor='mes' className="form-control" placeholder="Mes" aria-label="tope" aria-describedby="mes-addon" defaultValue={dataUser?.mes !== undefined ? dataUser.mes : ''} onChange={changed}></input><br></br>
+                      <input type="number" min="1" max="12" name="mes" htmlFor='mes' className="form-control" placeholder="Mes" aria-label="tope" aria-describedby="mes-addon" defaultValue={dataUser?.mes !== undefined ? dataUser.mes : ''} onChange={changed}></input><br></br>
                       <input type="text" name="tope1" htmlFor='tope1' className="form-control" placeholder="Primer Tope" aria-label="tope" aria-describedby="tope1-addon" defaultValue={dataUser?.tope1 !== undefined ? dataUser.tope1 : ''} onChange={changed}></input><br></br>
                       <input type="text" name="tope2" htmlFor='tope2' className="form-control" placeholder="Segundo Tope" aria-label="tope" aria-describedby="tope2-addon" defaultValue={dataUser?.tope2 !== undefined ? dataUser.tope2 : ''} onChange={changed}></input><br></br>
                       <input type="text" name="ano" htmlFor='ano' className="form-control" placeholder="Año" aria-label="ano" aria-describedby="ano-addon" defaultValue={dataUser?.ano !== undefined ? dataUser.ano : ''} onChange={changed}></input><br></br>
