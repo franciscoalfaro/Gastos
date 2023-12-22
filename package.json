@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "chart.js": "^4.4.1",
+    "html2pdf.js": "^0.10.1",
     "javascript-time-ago": "^2.5.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import imgLogo from '../../assets/img/curved-images/curved14.jpg'
 import imgCard from '../../assets/img/logos/mastercard.png'
-
 import { NavLink } from 'react-router-dom';
-
 import { GastosList } from './GastosList';
 import useAuth from '../../hooks/useAuth';
 import { useForm } from '../../hooks/useForm';
 import { Global } from '../../helpers/Global';
-import ReactTimeAgo from 'react-time-ago';
+import html2pdf from 'html2pdf.js';
+import { Detalle } from './Detalle';
+
 
 
 const divStyle = {
@@ -159,6 +159,16 @@ export const Gastos = () => {
   }
 
 
+  const [expenses, setExpenses] = useState([
+    { date: 'March, 01, 2020', id: '#MS-415646', amount: '$180' },
+    // ...otros datos de gastos
+  ]);
+
+  const generatePDF = () => {
+    const content = document.getElementById('pdfContent');
+    html2pdf().from(content).save();
+  };
+
 
   return (
     <div className="container-fluid py-4">
@@ -229,6 +239,7 @@ export const Gastos = () => {
                 </div>
               </div>
             </div>
+
             {/* seccion para agregar gastos*/}
             <form id='gasto-form' onSubmit={crearGasto}>
               <div className="col-md-12 mb-lg-0 mb-4">
@@ -304,6 +315,7 @@ export const Gastos = () => {
 
           </div>
         </div>
+
         <div className="col-lg-4">
           <div className="card h-100">
             <div className="card-header pb-0 p-3">
@@ -316,63 +328,12 @@ export const Gastos = () => {
                 </div>
               </div>
             </div>
-            <div className="card-body p-3 pb-0">
-              <ul className="list-group">
-                <li className="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                  <div className="d-flex flex-column">
-                    <h6 className="mb-1 text-dark font-weight-bold text-sm">March, 01, 2020</h6>
-                    <span className="text-xs">#MS-415646</span>
-                  </div>
-                  <div className="d-flex align-items-center text-sm">
-                    $180
-                    <button className="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i className="fas fa-file-pdf text-lg me-1"></i> PDF</button>
-                  </div>
-                </li>
-                <li className="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                  <div className="d-flex flex-column">
-                    <h6 className="text-dark mb-1 font-weight-bold text-sm">February, 10, 2021</h6>
-                    <span className="text-xs">#RV-126749</span>
-                  </div>
-                  <div className="d-flex align-items-center text-sm">
-                    $250
-                    <button className="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i className="fas fa-file-pdf text-lg me-1"></i> PDF</button>
-                  </div>
-                </li>
-                <li className="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                  <div className="d-flex flex-column">
-                    <h6 className="text-dark mb-1 font-weight-bold text-sm">April, 05, 2020</h6>
-                    <span className="text-xs">#FB-212562</span>
-                  </div>
-                  <div className="d-flex align-items-center text-sm">
-                    $560
-                    <button className="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i className="fas fa-file-pdf text-lg me-1"></i> PDF</button>
-                  </div>
-                </li>
-                <li className="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                  <div className="d-flex flex-column">
-                    <h6 className="text-dark mb-1 font-weight-bold text-sm">June, 25, 2019</h6>
-                    <span className="text-xs">#QW-103578</span>
-                  </div>
-                  <div className="d-flex align-items-center text-sm">
-                    $120
-                    <button className="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i className="fas fa-file-pdf text-lg me-1"></i> PDF</button>
-                  </div>
-                </li>
-                <li className="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
-                  <div className="d-flex flex-column">
-                    <h6 className="text-dark mb-1 font-weight-bold text-sm">March, 01, 2019</h6>
-                    <span className="text-xs">#AR-803481</span>
-                  </div>
-                  <div className="d-flex align-items-center text-sm">
-                    $300
-                    <button className="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i className="fas fa-file-pdf text-lg me-1"></i> PDF</button>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
+          {/* generar pdf */}
+            <Detalle></Detalle>
+            {/* fin generar pdf */}
+          </div>        
         </div>
-      </div >
+      </div>
 
       <GastosList updateTrigger={updateTrigger} actualizarLista={actualizarListaDeGastos} />
 
