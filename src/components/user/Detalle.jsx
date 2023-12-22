@@ -44,17 +44,31 @@ export const Detalle = () => {
 
         // Crear HTML para el PDF con el detalle del mes seleccionado
         const detalleHTML = `
-            <h6 className="mb-1 text-dark font-weight-bold text-sm"> Mes ${detalleMes.mes} - Total Utilizado $${detalleMes.totalGastos}</h6>
-            <ul>
+        <h6 style="text-align: center; margin-bottom: 10px;" className="mb-1 text-dark font-weight-bold text-sm"> Mes ${detalleMes.mes} - Total Utilizado $${detalleMes.totalGastos}</h6>
+        <table style="width: 100%; border-collapse: collapse; text-align: center;">
+            <thead style="background-color: lightgray;">
+                <tr>
+                    <th style="border: 1px solid black; padding: 8px;">Nombre</th>
+                    <th style="border: 1px solid black; padding: 8px;">Valor</th>
+                    <th style="border: 1px solid black; padding: 8px;">Descripción</th>
+                    <th style="border: 1px solid black; padding: 8px;">Cantidad</th>
+                    <th style="border: 1px solid black; padding: 8px;">Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
                 ${detalleMes.gastos.map((gasto) => `
-                    <li key=${gasto._id}>
-                    ${gasto.name}: $${gasto.valor}<br/>
-                    Descripción: ${gasto.description}<br/>
-                    Cantidad: ${gasto.cantidad}
-                    </li>
+                    <tr key=${gasto._id}>
+                        <td style="border: 1px solid black; padding: 8px;">${gasto.name}</td>
+                        <td style="border: 1px solid black; padding: 8px;">$${gasto.valor}</td>
+                        <td style="border: 1px solid black; padding: 8px;">${gasto.description}</td>
+                        <td style="border: 1px solid black; padding: 8px;">${gasto.cantidad}</td>
+                        <td style="border: 1px solid black; padding: 8px;">${gasto.create_at.split("T")[0]}</td>
+                    </tr>
                 `).join('')}
-            </ul>
-        `;
+            </tbody>
+        </table>
+    `;
+    
 
         const pdfContent = document.createElement('div');
         pdfContent.innerHTML = detalleHTML;
