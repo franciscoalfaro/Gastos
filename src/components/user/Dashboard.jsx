@@ -276,10 +276,11 @@ export const Dashboard = () => {
           <div className="col-lg-8 mb-lg-0 mb-4">
             <div className="card z-index-2">
               <div className="card-header pb-0">
-                <h5>{capitalizeFirstLetter(auth.name)}</h5><h6>Tu gasto en los 12 meses</h6>
+                <h5>Hola {capitalizeFirstLetter(auth.name)}</h5>
                 <p className="text-sm">
                   <span className="font-weight-bold"></span>
                 </p>
+                <h6>Tu gasto en los 12 meses a sido</h6>
               </div>
               <div className="card-body p-3">
                 <div className="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
@@ -340,7 +341,7 @@ export const Dashboard = () => {
 
 
         <div className="row my-4">
-          <div className="col-lg-12 col-md-6 mb-md-0 mb-4">
+          <div className="col-lg-12 col-md-10 mb-md-0 mb-4">
             <div className="card">
               <div className="card-header pb-0">
                 <div className="row">

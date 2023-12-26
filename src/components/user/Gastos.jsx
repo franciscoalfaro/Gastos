@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import imgLogo from '../../assets/img/curved-images/curved14.jpg'
-import imgCard from '../../assets/img/logos/mastercard.png'
 import { NavLink } from 'react-router-dom';
 import { GastosList } from './GastosList';
 import useAuth from '../../hooks/useAuth';
@@ -8,12 +6,6 @@ import { useForm } from '../../hooks/useForm';
 import { Global } from '../../helpers/Global';
 import html2pdf from 'html2pdf.js';
 import { Detalle } from './Detalle';
-
-
-
-const divStyle = {
-  backgroundImage: `url(${imgLogo})`, // Establece la imagen como fondo
-};
 
 
 
@@ -72,7 +64,7 @@ export const Gastos = () => {
 
     e.preventDefault();
     let newGasto = form
-   
+
 
     const request = await fetch(Global.url + 'bills/creargasto', {
       method: "POST",
@@ -87,7 +79,7 @@ export const Gastos = () => {
 
     if (data.status === "success") {
       setActualizarGastosList()
-     
+
     }
 
     const myForm = document.querySelector("#gasto-form")
@@ -100,7 +92,7 @@ export const Gastos = () => {
 
     e.preventDefault();
     let newCategoria = form
-   
+
 
     const request = await fetch(Global.url + 'category/crearcategoria', {
       method: "POST",
@@ -115,7 +107,7 @@ export const Gastos = () => {
 
     if (data.status === "success") {
       setNewCategorias(data)
-     
+
     }
 
     const myForm = document.querySelector("#categoria-form")
@@ -125,7 +117,7 @@ export const Gastos = () => {
 
   const opcioneDelselect = (event) => {
     setSelectedOption(event.target.value); // Actualiza la opción seleccionada
-    
+
   };
 
 
@@ -152,7 +144,7 @@ export const Gastos = () => {
       if (data.status === "success") {
         setSaldos(data.total)
         setTotalGeneral(data)
-       
+
       }
     } catch (error) {
 
@@ -172,30 +164,25 @@ export const Gastos = () => {
         <div className="col-lg-8">
           <div className="row">
             <div className="col-xl-6 mb-xl-0 mb-4">
-              <div className="card bg-transparent shadow-xl">
-                <div className="overflow-hidden position-relative border-radius-xl " style={divStyle}>
-                  <span className="mask bg-gradient-dark"></span>
-                  <div className="card-body position-relative z-index-1 p-3">
-                    <i className="fas fa-wifi text-white p-2"></i>
-                    <h5 className="text-white mt-4 mb-5 pb-2">4562&nbsp;&nbsp;&nbsp;1122&nbsp;&nbsp;&nbsp;4594&nbsp;&nbsp;&nbsp;7852</h5>
-                    <div className="d-flex">
-                      <div className="d-flex">
-                        <div className="me-4">
-                          <p className="text-white text-sm opacity-8 mb-0" >Usuario</p>
-                          <h6 className="text-white mb-0">{auth.name}</h6>
-                        </div>
-                        <div>
-                          <p className="text-white text-sm opacity-8 mb-0">Cuenta Creada</p>
-                          <h6 className="text-white mb-0">{auth.create_at.split("T")[0]}</h6>
-                        </div>
-                      </div>
-                      <div className="ms-auto w-20 d-flex align-items-end justify-content-end">
-                        <img className="w-60 mt-2" src={imgCard} alt="logo"></img>
-                      </div>
+
+              <div className="card">
+                <div className="row g-0">
+                  <div className="col-md-4 perfil" >
+                    <img src={Global.url + "user/avatar/" + auth.image} className="img-thumbnail" alt="perfil"></img>
+                  </div>
+                  <div className="col-md-4 card-body pt-5 p-0 text-left">
+                    <div className="card-body">
+                      <h5 className="card-title text-capitalize">{auth.name}</h5>
+                      <p className="card-text">Acerca de mi {auth.bio}</p>
+                      <p className="card-text">Cuenta creada : {auth.create_at.split("T")[0]}</p>
+                      <p className="card-text"></p>
                     </div>
                   </div>
                 </div>
               </div>
+
+
+
             </div>
             <div className="col-xl-6">
               <div className="row">
@@ -258,6 +245,7 @@ export const Gastos = () => {
                           <input type="text" name="description" className="form-control" placeholder="Descripcion" aria-label="description" aria-describedby="description-addon" required onChange={changed} />
                           <input type="number" name="cantidad" className="form-control" placeholder="cantidad" aria-label="cantidad" aria-describedby="cantidad-addon" required onChange={changed} />
                           <input type="number" name="valor" className="form-control" placeholder="valor" aria-label="valor" aria-describedby="valor-addon" required onChange={changed} />
+                          <input type="date" name="fechagasto" className="form-control" placeholder="fecha de gasto" aria-label="fechagasto" aria-describedby="gasto-addon" required onChange={changed} />
                           <input type="text" name="categoria" className="form-control" placeholder="Categoria" aria-label="categoria" aria-describedby="categoria-addon" required disabled value={selectedOption} onChange={changed} />
                           <select name="categoria" value={selectedOption} onChange={eventosDistintos} className='select'>
                             <option value=""   >Seleccionar Categoria</option>
@@ -265,7 +253,7 @@ export const Gastos = () => {
                               <option key={item._id} value={item.name} >
                                 {item.name}
                               </option>
-                             
+
                             ))}
                           </select>
                         </div>
@@ -324,10 +312,10 @@ export const Gastos = () => {
                 </div>
               </div>
             </div>
-          {/* generar pdf */}
+            {/* generar pdf */}
             <Detalle></Detalle>
             {/* fin generar pdf */}
-          </div>        
+          </div>
         </div>
       </div>
 

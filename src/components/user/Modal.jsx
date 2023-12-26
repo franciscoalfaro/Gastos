@@ -12,6 +12,8 @@ export const Modal = ({ updateGastoList }) => {
     const updateGastoUser = SerializeForm(e.target);
     const gastoId = updateGastoList._id;
 
+    console.log(updateGastoList)
+
 
     try {
       const request = await fetch(Global.url + "bills/update/" + gastoId, {
@@ -72,6 +74,15 @@ export const Modal = ({ updateGastoList }) => {
           <div className="mb-3">
             <label htmlFor="valor">Valor:</label>
             <input type="number" name='valor' className="form-control" defaultValue={updateGastoList.valor} onChange={changed}></input>
+          </div>
+          <div className="mb-3">
+            <label htmlFor="valor">Fecha del gasto:</label>
+            {updateGastoList.fechagasto?(
+              <input type="date" name="fechagasto" className="form-control" placeholder="fecha de gasto" aria-label="fechagasto" aria-describedby="gasto-addon" defaultValue={updateGastoList.fechagasto ? updateGastoList.fechagasto.split("T")[0] : ''} required onChange={changed}></input>
+            ):(
+              <input type="date" name="fechagasto" className="form-control" placeholder="fecha de gasto" aria-label="fechagasto" aria-describedby="gasto-addon" defaultValue={updateGastoList.fechagasto ? updateGastoList.create_at.split("T")[0] : ''} required onChange={changed}></input>
+            )}
+            
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

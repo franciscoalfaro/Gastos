@@ -42,9 +42,9 @@ export const Consumo = ({ actualizarLista, updateTrigger }) => {
 
 
   const gastoData = async (page = 1) => {
-    
+
     try {
-      const request = await fetch(Global.url + "bills/ultimosgastos/"+page, {
+      const request = await fetch(Global.url + "bills/ultimosgastos/" + page, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -55,8 +55,8 @@ export const Consumo = ({ actualizarLista, updateTrigger }) => {
       setDataGasto(data.gastos)
       setTotalPage(data.totalPages)
       setCurrentPage(page)
-      
-     
+
+
 
     } catch (error) {
       console.error('Error al obtener los datos:', error);
@@ -79,7 +79,7 @@ export const Consumo = ({ actualizarLista, updateTrigger }) => {
       })
       const data = await request.json()
 
-    
+
 
       if (data.status === 'success') {
         setGastoDelete(data)
@@ -194,7 +194,14 @@ export const Consumo = ({ actualizarLista, updateTrigger }) => {
                               <span className="text-xs font-weight-bold">$ {gasto.valor}</span>
                             </td>
                             <td className="align-middle text-center text-sm">
-                              <span className="text-xs font-weight-bold">{gasto.create_at.split("T")[0]}</span>
+                           
+                              <div>
+                                {gasto.fechagasto ? (
+                                  <span className="text-xs font-weight-bold">{gasto.fechagasto.split("T")[0]}</span>
+                                ) : (
+                                  <span className="text-xs font-weight-bold">{gasto.create_at.split("T")[0]}</span>
+                                )}
+                              </div>
                             </td>
                             <td className="ms-auto text-end">
                               <a className="btn btn-link text-danger text-gradient px-3 mb-0" onClick={() => deleteGasto(gasto._id)}><i className="far fa-trash-alt me-2"></i>Eliminar</a>
@@ -214,10 +221,10 @@ export const Consumo = ({ actualizarLista, updateTrigger }) => {
                     </tbody>
                   </table>
                   <div className="text-center"> {/* Contenedor centrado */}
-                    <a onClick={paginaAnterior} disabled={currentPage === 1} style={{ cursor:'pointer' }}>{"<< "}</a>
+                    <a onClick={paginaAnterior} disabled={currentPage === 1} style={{ cursor: currentPage === totalPages ? 'pointer' : '' }}>{"<<  "}</a>
                     <span>Página {currentPage} de {totalPages}</span>
-                    <a onClick={paginaSiguiente} disabled={currentPage === totalPages} style={{ cursor: currentPage === totalPages ? '' : 'pointer' }}>{" >>"}</a>
-                    </div>
+                    <a onClick={paginaSiguiente} disabled={currentPage === totalPages} style={{ cursor: currentPage === totalPages ? '' : 'pointer' }}>{" >>"} </a>
+                  </div>
                 </div>
               </div>
             </div>

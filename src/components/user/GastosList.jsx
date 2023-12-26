@@ -106,7 +106,18 @@ export const GastosList = ({ actualizarLista, updateTrigger }) => {
                         <span className="mb-2 text-xs">description <span className="text-dark font-weight-bold ms-sm-2">{gasto.description}</span></span>
                         <span className="mb-2 text-xs">cantidad <span className="text-dark ms-sm-2 font-weight-bold">{gasto.cantidad}</span></span>
                         <span className="mb-2 text-xs">categoria <span className="text-dark ms-sm-2 font-weight-bold">{gasto?.categoria?.name ?? ''}</span></span>
+
+
+                        {gasto.fechagasto ? (
+                          <span className="mb-2 text-xs">Fecha Gasto <span className="text-dark ms-sm-2 font-weight-bold"> {gasto.fechagasto.split("T")[0]}</span></span>
+
+                        ) : (
+                          <span className="mb-2 text-xs">Fecha Gasto <span className="text-dark ms-sm-2 font-weight-bold"> {gasto.create_at.split("T")[0]}</span></span>
+
+                        )}
+
                         <span className="text-xs">Valor <span className="text-dark ms-sm-2 font-weight-bold">$ {gasto.valor}</span></span>
+
                       </div>
                       <div className="ms-auto text-end">
                         <a className="btn btn-link text-danger text-gradient px-3 mb-0" onClick={() => deleteGasto(gasto._id)}><i className="far fa-trash-alt me-2"></i>Eliminar</a>
