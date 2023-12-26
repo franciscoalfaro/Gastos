@@ -12,6 +12,7 @@ import { Profile } from '../components/user/Profile'
 import { Footer } from '../components/layout/public/Footer'
 import { Gastos } from '../components/user/Gastos'
 import { Dashboard } from '../components/user/Dashboard'
+import { TerminoyCondiciones } from '../components/layout/public/TerminoyCondiciones'
 
 export const Routing = () => {
     return (
@@ -23,6 +24,7 @@ export const Routing = () => {
                         <Route path='login' element={<Login></Login>}></Route>
                         <Route path='registro' element={<Register></Register>}></Route>
                         <Route path='recuperar' element={<Recovery></Recovery>}></Route>
+                        <Route path='terminoycondiciones' element={<TerminoyCondiciones></TerminoyCondiciones>}></Route>
                     </Route>
 
                     <Route path='/auth' element={<PrivateLayout></PrivateLayout>}>

@@ -102,7 +102,7 @@ export const Register = () => {
                     <div className="form-check form-check-info text-left">
                     <label htmlFor="confirm" className="form-check-label"></label>
                       <input className="form-check-input" name="confirm" type="checkbox" value="" id="flexCheckDefault" checked onChange={changed}></input>
-                        Acepto los <NavLink to="/" className="text-dark font-weight-bolder">Terminos y Condiciones</NavLink>
+                        Acepto los <NavLink to="/terminoycondiciones" className="text-dark font-weight-bolder">Terminos y Condiciones</NavLink>
                     </div>
                     <div className="text-center">
                       <button type="submit" className="btn bg-gradient-dark w-100 my-4 mb-2">Registrarse</button>
