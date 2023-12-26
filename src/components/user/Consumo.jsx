@@ -2,31 +2,49 @@ import React, { useEffect, useState } from 'react'
 import useAuth from '../../hooks/useAuth'
 import ReactTimeAgo from 'react-time-ago'
 import { NavLink } from 'react-router-dom';
-import { Global } from '../../helpers/Global';           
+import { Global } from '../../helpers/Global';
 
 import imgCard from '../../assets/img/small-logos/contabilidad.png'
 
 
-export const Consumo = ({actualizarLista, updateTrigger}) => {
-  
+export const Consumo = ({ actualizarLista, updateTrigger }) => {
+
 
   const { auth } = useAuth()
   const [dataGasto, setDataGasto] = useState([])
   const [gastoDelete, setGastoDelete] = useState([])
   const [actualizacion, setActualizacion] = useState(false);
 
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPage] = useState(1)
+
   useEffect(() => {
     gastoData()
   }, [gastoDelete])
 
   useEffect(() => {
+  }, [updateTrigger, actualizarLista])
+
+
+  const paginaAnterior = () => {
+    if (currentPage > 1) {
+      gastoData(currentPage - 1)
+    }
+
+  }
+
+  const paginaSiguiente = () => {
+    if (currentPage < totalPages) {
+      gastoData(currentPage + 1)
+
+    }
+  }
+
+
+  const gastoData = async (page = 1) => {
     
-  }, [updateTrigger,actualizarLista])
-
-
-  const gastoData = async () => {
     try {
-      const request = await fetch(Global.url + "bills/ultimosgastos", {
+      const request = await fetch(Global.url + "bills/ultimosgastos/"+page, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -35,6 +53,11 @@ export const Consumo = ({actualizarLista, updateTrigger}) => {
       })
       const data = await request.json()
       setDataGasto(data.gastos)
+      setTotalPage(data.totalPages)
+      setCurrentPage(page)
+      
+     
+
     } catch (error) {
       console.error('Error al obtener los datos:', error);
 
@@ -43,12 +66,12 @@ export const Consumo = ({actualizarLista, updateTrigger}) => {
 
 
   //eliminar gastos
-  const deleteGasto = async(gastoId)=>{
-     
+  const deleteGasto = async (gastoId) => {
+
     try {
-      const request = await fetch(Global.url + 'bills/delete/'+ gastoId,{
-        method:'DELETE',
-        headers:{
+      const request = await fetch(Global.url + 'bills/delete/' + gastoId, {
+        method: 'DELETE',
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': localStorage.getItem('token')
         }
@@ -56,17 +79,16 @@ export const Consumo = ({actualizarLista, updateTrigger}) => {
       })
       const data = await request.json()
 
-      //console.log(data.message)
+    
 
-      if(data.status ==='success'){
-        console.log(data.message)
+      if (data.status === 'success') {
         setGastoDelete(data)
-  
+
       }
-      
+
     } catch (error) {
       console.error('Error al obtener los datos:', error);
-      
+
     }
 
 
@@ -144,6 +166,7 @@ export const Consumo = ({actualizarLista, updateTrigger}) => {
                         <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Descripción</th>
                         <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 align-middle text-center">Cantidad</th>
                         <th className="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">Valor Total</th>
+                        <th className="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">Fecha del Gasto</th>
                         <th></th>
                       </tr>
                     </thead>
@@ -171,21 +194,30 @@ export const Consumo = ({actualizarLista, updateTrigger}) => {
                               <span className="text-xs font-weight-bold">$ {gasto.valor}</span>
                             </td>
                             <td className="align-middle text-center text-sm">
-                              <span className="text-xs font-weight-bold"></span>
+                              <span className="text-xs font-weight-bold">{gasto.create_at.split("T")[0]}</span>
                             </td>
                             <td className="ms-auto text-end">
                               <a className="btn btn-link text-danger text-gradient px-3 mb-0" onClick={() => deleteGasto(gasto._id)}><i className="far fa-trash-alt me-2"></i>Eliminar</a>
-
                             </td>
                           </tr>
                         ))
+
                       ) : (
+
                         <tr>
                           <td colSpan="4" className="text-center">No hay gastos.</td>
                         </tr>
                       )}
+
+
+
                     </tbody>
                   </table>
+                  <div className="text-center"> {/* Contenedor centrado */}
+                    <a onClick={paginaAnterior} disabled={currentPage === 1} style={{ cursor:'pointer' }}>{"<< "}</a>
+                    <span>Página {currentPage} de {totalPages}</span>
+                    <a onClick={paginaSiguiente} disabled={currentPage === totalPages} style={{ cursor: currentPage === totalPages ? '' : 'pointer' }}>{" >>"}</a>
+                    </div>
                 </div>
               </div>
             </div>

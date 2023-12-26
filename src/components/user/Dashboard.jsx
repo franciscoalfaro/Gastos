@@ -57,10 +57,10 @@ export const Dashboard = () => {
 
 
 
-
+//la consulta obtiene los ultimos 30 desde la api
   const gastoData = async () => {
     try {
-      const request = await fetch(Global.url + "bills/ultimosgastos", {
+      const request = await fetch(Global.url + "bills/ultimos5", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

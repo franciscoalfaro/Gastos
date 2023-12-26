@@ -72,7 +72,7 @@ export const Gastos = () => {
 
     e.preventDefault();
     let newGasto = form
-    console.log(newGasto)
+   
 
     const request = await fetch(Global.url + 'bills/creargasto', {
       method: "POST",
@@ -87,7 +87,7 @@ export const Gastos = () => {
 
     if (data.status === "success") {
       setActualizarGastosList()
-      console.log("gasto agregado correctamente")
+     
     }
 
     const myForm = document.querySelector("#gasto-form")
@@ -100,7 +100,7 @@ export const Gastos = () => {
 
     e.preventDefault();
     let newCategoria = form
-    console.log(newCategoria)
+   
 
     const request = await fetch(Global.url + 'category/crearcategoria', {
       method: "POST",
@@ -115,7 +115,7 @@ export const Gastos = () => {
 
     if (data.status === "success") {
       setNewCategorias(data)
-      console.log("categoria agregado correctamente")
+     
     }
 
     const myForm = document.querySelector("#categoria-form")
@@ -125,7 +125,7 @@ export const Gastos = () => {
 
   const opcioneDelselect = (event) => {
     setSelectedOption(event.target.value); // Actualiza la opción seleccionada
-    console.log(event.target.value)
+    
   };
 
 
@@ -152,17 +152,13 @@ export const Gastos = () => {
       if (data.status === "success") {
         setSaldos(data.total)
         setTotalGeneral(data)
+       
       }
     } catch (error) {
 
     }
   }
 
-
-  const [expenses, setExpenses] = useState([
-    { date: 'March, 01, 2020', id: '#MS-415646', amount: '$180' },
-    // ...otros datos de gastos
-  ]);
 
   const generatePDF = () => {
     const content = document.getElementById('pdfContent');

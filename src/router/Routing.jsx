@@ -32,7 +32,6 @@ export const Routing = () => {
                         <Route path='gastos' element={<Gastos></Gastos>}></Route>
                         <Route path='logout'element={<Logout></Logout>}></Route>
                         <Route path='perfil' element={<Profile></Profile>}></Route>
-                        
                     </Route>
                     
                     <Route path='*' element={<><h1><p>Error 404 <Link to="/">Volver Al inicio</Link></p></h1></>}></Route>

@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { Global } from '../../helpers/Global'
+import { Modal } from './Modal';
 
 
 
 export const GastosList = ({ actualizarLista, updateTrigger }) => {
   const [dataGasto, setDataGasto] = useState([])
   const [actualizacion, setActualizacion] = useState(false);
+  const [updateGastoList, setUpdateGastoList] = useState([])
 
-  const openModal = () => {
+
+  const openModal = (gasto) => {
+    setUpdateGastoList(gasto);
     const miModal = new window.bootstrap.Modal(document.getElementById('miModal'));
     miModal.show();
   };
@@ -32,6 +36,7 @@ export const GastosList = ({ actualizarLista, updateTrigger }) => {
 
       if (data.status === "success") {
         setDataGasto(data.gastos)
+
       }
 
 
@@ -74,31 +79,7 @@ export const GastosList = ({ actualizarLista, updateTrigger }) => {
 
   }
 
-  const updateGasto = async (e) => {
-    e.preventDefault();
-    let newGastoUser = SerializeForm(e.target)
 
-    const request = await fetch(Global.url + "saldo/update", {
-      method: "PUT",
-      body: JSON.stringify(newGastoUser),
-      headers: {
-        "Content-Type": "application/json",
-        'Authorization': localStorage.getItem('token')
-      }
-    })
-    const data = await request.json()
-    console.log(data)
-
-    if (data.status == "success") {
-
-      setActualizacion(prevState => !prevState);
-
-    } else {
-      console.error('Error al obtener los datos:', data.message);
-    }
-
-
-  }
 
 
 
@@ -130,7 +111,7 @@ export const GastosList = ({ actualizarLista, updateTrigger }) => {
                       <div className="ms-auto text-end">
                         <a className="btn btn-link text-danger text-gradient px-3 mb-0" onClick={() => deleteGasto(gasto._id)}><i className="far fa-trash-alt me-2"></i>Eliminar</a>
 
-                        <a className="btn btn-link text-dark px-3 mb-0" onClick={openModal}><i className="fas fa-pencil-alt text-dark me-2" type="submit" aria-hidden="true"></i>Editar</a>
+                        <a className="btn btn-link text-dark px-3 mb-0" onClick={() => openModal(gasto)}><i className="fas fa-pencil-alt text-dark me-2" type="submit" aria-hidden="true"></i>Editar</a>
 
                       </div>
                     </li>
@@ -140,59 +121,31 @@ export const GastosList = ({ actualizarLista, updateTrigger }) => {
               ) : (
                 <p colSpan="4" className="text-center">No hay gastos creados.</p>
               )}
-              <form id='update-form' onSubmit={updateGasto}>
-              </form>
             </div>
 
           </div>
         </div>
 
         {/*modal */}
-        <div className="modal" id="miModal" tabIndex="-1">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title">Editar Gasto</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div className="modal-body">
-              {/* Campos de input en el cuerpo del modal */}
-              <form>
-                <div className="mb-3">
-                  <label htmlFor="nombre">Nombre:</label>
-                  <input type="text" className="form-control" id="nombre" />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="descripcion">descripcion:</label>
-                  <input type="text" className="form-control" id="descripcion" />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="cantidad">antidad:</label>
-                  <input type="number" className="form-control" id="cantidad" />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="cantidad">categoria:</label>
-                  <input type="number" className="form-control" id="cantidad" />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="cantidad">valor:</label>
-                  <input type="number" className="form-control" id="cantidad" />
-                </div>
-                {/* Agrega más campos de input según lo necesites */}
-              </form>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" className="btn btn-primary">Guardar Cambios</button>
+
+        <div className="modal" id="miModal" tabIndex="-1" >
+          <div className="modal-dialog" >
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Editar Gasto</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body">
+                <Modal updateGastoList={updateGastoList} setDataGasto={setDataGasto} ></Modal>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
         {/*fin moodal */}
 
 
-        <div className="col-md-5 mt-4">
+        < div className="col-md-5 mt-4" >
           <div className="card h-100 mb-4">
             <div className="card-header pb-0 px-3">
               <div className="row">
@@ -241,7 +194,7 @@ export const GastosList = ({ actualizarLista, updateTrigger }) => {
             </div>
           </div>
         </div>
-      </div>
+      </div >
 
     </>
 
