@@ -24,7 +24,7 @@ export const GastoEntreFechas = () => {
         setFechas({ ...fechas, [campo]: valor });
         changed({ target: { name: campo, value: valor } });
     };
-    
+
 
     const busquedaFechas = async (fechaInicio, fechaFin) => {
         const fechaIni = fechaInicio.value;
@@ -55,13 +55,14 @@ export const GastoEntreFechas = () => {
                         <div className="col-md-6">
                             <h6 className="mb-0">Ultimos Gastos</h6>
                         </div>
-                        <div className="col-md-6 d-flex justify-content-end align-items-center">
-                            <i className="far fa-calendar-alt me-2"></i>
-                            <input type="date" id='fechaInicial' name="fechaInicial" className="form-control" placeholder="fechaInicial" aria-label="fechaInicial" aria-describedby="fechaInicial-addon" required value={fechas.fechaInicial} onChange={(e) => actualizarFechas('fechaInicial', e.target.value)} />
-                            <input type="date" id='fechaFinal' name="fechaFinal" className="form-control" placeholder="fechaFinal" aria-label="fechaFinal" aria-describedby="fechaFinal-addon" required value={fechas.fechaFinal} onChange={(e) => actualizarFechas('fechaFinal', e.target.value)} />
-                            <button className='btn bg-gradient-dark mb-0' onClick={() => busquedaFechas(document.getElementById('fechaInicial'), document.getElementById('fechaFinal'))}>traer</button>
-                        </div>
+
                     </div>
+                </div>
+                <div className="col-md-10 d-flex align-items-center inputFechas">
+                    <i className="far fa-calendar-alt me-2"></i>
+                    <input type="date" id='fechaInicial' name="fechaInicial" className="form-control" placeholder="fechaInicial" aria-label="fechaInicial" aria-describedby="fechaInicial-addon" required value={fechas.fechaInicial} onChange={(e) => actualizarFechas('fechaInicial', e.target.value)} />
+                    <input type="date" id='fechaFinal' name="fechaFinal" className="form-control" placeholder="fechaFinal" aria-label="fechaFinal" aria-describedby="fechaFinal-addon" required value={fechas.fechaFinal} onChange={(e) => actualizarFechas('fechaFinal', e.target.value)} />
+                    <button className='btn bg-gradient-dark mb-0' onClick={() => busquedaFechas(document.getElementById('fechaInicial'), document.getElementById('fechaFinal'))}>traer</button>
                 </div>
                 <div className="card-body pt-4 p-3">
                     <ul className="list-group">
