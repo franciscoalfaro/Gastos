@@ -316,7 +316,7 @@ export const Dashboard = () => {
                           <i className="fas fa-plus"></i><span>&nbsp;&nbsp;Agregar Saldo</span>
                         </button>
                         <button className="btn bg-gradient-dark mb-0" type="submit" data-bs-toggle="modal" data-bs-target="#miModalregistrosaldo">
-                          <i className="fas fa-plus"></i><span>&nbsp;&nbsp;Saldo mes anterior</span>
+                          <i className="fas fa-money-bills"></i><span>&nbsp;&nbsp;Otros Saldos</span>
                         </button>
                         <button className="btn bg-gradient-dark mb-0" type="submit" data-bs-toggle="modal" data-bs-target="#miModalHistorico">
                           <i className="fas fa-eye"></i><span>&nbsp;&nbsp;Historico</span>
@@ -338,7 +338,7 @@ export const Dashboard = () => {
                           <i className="fas fa-sync"></i><span>&nbsp;&nbsp;Actualizar Datos</span>
                         </button>
                         <button className="btn bg-gradient-dark mb-0" type="submit" data-bs-toggle="modal" data-bs-target="#miModalregistrosaldo">
-                          <i className="fas fa-plus"></i><span>&nbsp;&nbsp;Saldo mes anterior</span>
+                          <i className="fas fa-money-bills"></i><span>&nbsp;&nbsp;Otros Saldos</span>
                         </button>
 
                         <button className="btn bg-gradient-dark mb-0" type="submit" data-bs-toggle="modal" data-bs-target="#miModalHistorico">
