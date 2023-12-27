@@ -65,7 +65,7 @@ export const Profile = () => {
         });
 
         const uploadData = await uploadRequest.json();
-        console.log(uploadData);
+       
 
         if (uploadData.status == "success" && uploadData.user) {
           delete uploadData.password;
@@ -93,7 +93,7 @@ export const Profile = () => {
         });
 
         const uploadData = await uploadRequest.json();
-        console.log(uploadData);
+    
 
         if (uploadData.status == "success" && uploadData.user) {
           delete uploadData.password;

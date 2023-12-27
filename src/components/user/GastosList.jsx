@@ -64,10 +64,8 @@ export const GastosList = ({ actualizarLista, updateTrigger }) => {
       })
       const data = await request.json()
 
-      //console.log(data.message)
 
       if (data.status === 'success') {
-        console.log(data.message)
         listarGastosCreados()
         actualizarLista()
       }

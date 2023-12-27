@@ -22,8 +22,6 @@ export const Detalle = () => {
             const data = await request.json()
             if (data.status === "success") {
                 setDetalle(data.detalleGastos)
-                console.log(data.detalleGastos)
-
 
             }
 
@@ -39,6 +37,8 @@ export const Detalle = () => {
             console.error('No se encontró detalle para el mes seleccionado');
             return;
         }
+
+        console.log(detalle)
    
 
         const content = document.getElementById(`pdfContent-${mes}`);

@@ -437,12 +437,36 @@ button:focus:not(:focus-visible) {
   outline: 0;
 }
 
+/* Estilos CSS */
+.historico-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.historico-table th,
+.historico-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.historico-table th {
+  font-weight: bold;
+  color:white
+}
+
+.historico-table button {
+  cursor: pointer;
+}
+
+
 input,
 button,
 select,
 optgroup,
 textarea {
   margin: 0;
+  margin-left: 3px;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;

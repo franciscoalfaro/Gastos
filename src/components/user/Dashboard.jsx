@@ -5,6 +5,8 @@ import { Global } from '../../helpers/Global';
 import { useForm } from '../../hooks/useForm';
 import { SerializeForm } from '../../helpers/SerializeForm';
 import imgCard from '../../assets/img/small-logos/contabilidad.png'
+import { RegistrarSaldoModal } from './RegistrarSaldoModal';
+import { HistoricoSaldos } from './HistoricoSaldos';
 
 export const Dashboard = () => {
 
@@ -57,7 +59,7 @@ export const Dashboard = () => {
 
 
 
-//la consulta obtiene los ultimos 30 desde la api
+  //la consulta obtiene los ultimos 30 desde la api
   const gastoData = async () => {
     try {
       const request = await fetch(Global.url + "bills/ultimos5", {
@@ -99,6 +101,9 @@ export const Dashboard = () => {
 
     if (data.status === "success") {
       setActualizacion(prevState => !prevState);
+      setCrearSaldo(data)
+      console.log(data)
+
     } else {
       console.error('Error al obtener los datos:', data.message);
     }
@@ -142,7 +147,6 @@ export const Dashboard = () => {
   };
 
 
-
   return (
     <>
       <div className="container-fluid py-4">
@@ -174,7 +178,7 @@ export const Dashboard = () => {
               <div className="card-body p-3">
                 <div className="row">
                   <div className="col-8">
-                    {dataGasto && dataGasto.length > 0 ?  (
+                    {dataGasto && dataGasto.length > 0 ? (
                       <div className="numbers">
                         <p className="text-sm mb-0 text-capitalize font-weight-bold">Último gasto</p>
                         <h5 className="font-weight-bolder mb-0">
@@ -311,6 +315,12 @@ export const Dashboard = () => {
                         <button className="btn bg-gradient-dark mb-0" type="submit">
                           <i className="fas fa-plus"></i><span>&nbsp;&nbsp;Agregar Saldo</span>
                         </button>
+                        <button className="btn bg-gradient-dark mb-0" type="submit" data-bs-toggle="modal" data-bs-target="#miModalregistrosaldo">
+                          <i className="fas fa-plus"></i><span>&nbsp;&nbsp;Saldo mes anterior</span>
+                        </button>
+                        <button className="btn bg-gradient-dark mb-0" type="submit" data-bs-toggle="modal" data-bs-target="#miModalHistorico">
+                          <i className="fas fa-eye"></i><span>&nbsp;&nbsp;Historico</span>
+                        </button>
                       </div>
                     </div>
                   </form>
@@ -327,11 +337,25 @@ export const Dashboard = () => {
                         <button className="btn bg-gradient-dark mb-0" type="submit">
                           <i className="fas fa-sync"></i><span>&nbsp;&nbsp;Actualizar Datos</span>
                         </button>
+                        <button className="btn bg-gradient-dark mb-0" type="submit" data-bs-toggle="modal" data-bs-target="#miModalregistrosaldo">
+                          <i className="fas fa-plus"></i><span>&nbsp;&nbsp;Saldo mes anterior</span>
+                        </button>
+
+                        <button className="btn bg-gradient-dark mb-0" type="submit" data-bs-toggle="modal" data-bs-target="#miModalHistorico">
+                          <i className="fas fa-eye"></i><span>&nbsp;&nbsp;Historico</span>
+                        </button>
+
                       </div>
                     </div>
+
                   </form>
+
                 )}
               </div>
+
+
+
+
               <div className="card-body p-3">
 
               </div>
@@ -339,6 +363,37 @@ export const Dashboard = () => {
           </div>
         </div>
 
+        {/**modals */}
+        <div className="modal" id="miModalregistrosaldo" tabIndex="-1" >
+          <div className="modal-dialog" >
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Crear Saldo Mes Anterior</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body">
+                <RegistrarSaldoModal></RegistrarSaldoModal>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div className="modal" id="miModalHistorico" tabIndex="-1" >
+          <div className="modal-dialog" >
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Historico de saldos</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body">
+                <HistoricoSaldos></HistoricoSaldos>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/**fin modals */}
 
         <div className="row my-4">
           <div className="col-lg-12 col-md-10 mb-md-0 mb-4">
@@ -373,7 +428,7 @@ export const Dashboard = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {dataGasto && dataGasto.length > 0 ?  (
+                      {dataGasto && dataGasto.length > 0 ? (
                         dataGasto.map((gasto) => (
                           <tr key={gasto._id}>
                             <td>

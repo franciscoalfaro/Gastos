@@ -12,9 +12,7 @@ export const Modal = ({ updateGastoList }) => {
     const updateGastoUser = SerializeForm(e.target);
     const gastoId = updateGastoList._id;
 
-    console.log(updateGastoList)
-
-
+  
     try {
       const request = await fetch(Global.url + "bills/update/" + gastoId, {
         method: "PUT",

@@ -146,8 +146,6 @@ export const Gastos = () => {
       if (data.status === "success") {
         setSaldos(data.total)
         setTotalGeneral(data)
-        console.log('saldos de gastos', saldos)
-
       }
     } catch (error) {
 

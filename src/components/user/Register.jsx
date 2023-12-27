@@ -15,7 +15,7 @@ export const Register = () => {
 
       //variable para almacenar datos del formulario
       let newUser = form
-      console.log(form)
+  
 
       //guardar datos en backend
 
@@ -28,7 +28,7 @@ export const Register = () => {
       })
 
       const data = await request.json()
-      console.log(data)
+     
 
       if (data.status == "success") {
           setSaved("saved")
