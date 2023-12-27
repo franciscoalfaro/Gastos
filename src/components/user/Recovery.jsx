@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import imgback from '../../assets/img/curved-images/curved14.jpg'
 import { Global } from '../../helpers/Global'
 import { Spiner } from '../../hooks/Spiner';
-import userImage from '../../assets/img/user.png'
+import userImage from '../../assets/img/default.png'
  
 
 export const Recovery = () => {

@@ -78,9 +78,9 @@ export const Modal = ({ updateGastoList }) => {
           <div className="mb-3">
             <label htmlFor="valor">Fecha del gasto:</label>
             {updateGastoList.fechagasto?(
-              <input type="date" name="fechagasto" className="form-control" placeholder="fecha de gasto" aria-label="fechagasto" aria-describedby="gasto-addon" defaultValue={updateGastoList.fechagasto ? updateGastoList.fechagasto.split("T")[0] : ''} required onChange={changed}></input>
+              <input type="datetime-local" name="fechagasto" className="form-control" placeholder="fecha de gasto" aria-label="fechagasto" aria-describedby="gasto-addon" defaultValue={updateGastoList.fechagasto ? updateGastoList.fechagasto.split("T")[0] : ''} required onChange={changed}></input>
             ):(
-              <input type="date" name="fechagasto" className="form-control" placeholder="fecha de gasto" aria-label="fechagasto" aria-describedby="gasto-addon" defaultValue={updateGastoList.fechagasto ? updateGastoList.create_at.split("T")[0] : ''} required onChange={changed}></input>
+              <input type="datetime-local" name="fechagasto" className="form-control" placeholder="fecha de gasto" aria-label="fechagasto" aria-describedby="gasto-addon" defaultValue={updateGastoList.fechagasto ? updateGastoList.create_at.split("T")[0] : ''} required onChange={changed}></input>
             )}
             
           </div>

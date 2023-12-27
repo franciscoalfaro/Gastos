@@ -22,6 +22,7 @@ export const Detalle = () => {
             const data = await request.json()
             if (data.status === "success") {
                 setDetalle(data.detalleGastos)
+                console.log(data.detalleGastos)
 
 
             }
@@ -62,7 +63,7 @@ export const Detalle = () => {
                                 <td style="border: 1px solid black; padding: 8px;">$${gasto.valor}</td>
                                 <td style="border: 1px solid black; padding: 8px;">${gasto.description}</td>
                                 <td style="border: 1px solid black; padding: 8px;">${gasto.cantidad}</td>
-                                <td style="border: 1px solid black; padding: 8px;">${gasto.create_at.split("T")[0]}</td>
+                                <td style="border: 1px solid black; padding: 8px;">${gasto.fechagasto.split("T")[0]}</td>
                             </tr>
                         `).join('')}
                         <tr>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import useAuth from '../../hooks/useAuth'
 import { Global } from '../../helpers/Global'
-import avatar from '../../../src/assets/img/user.png'
+import avatar from '../../../src/assets/img/default.png'
 import { SerializeForm } from '../../helpers/SerializeForm'
 import { NavLink } from 'react-router-dom'
 

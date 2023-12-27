@@ -6,6 +6,7 @@ import { useForm } from '../../hooks/useForm';
 import { Global } from '../../helpers/Global';
 import html2pdf from 'html2pdf.js';
 import { Detalle } from './Detalle';
+import avatar from '../../assets/img/default.png'
 
 
 
@@ -132,6 +133,7 @@ export const Gastos = () => {
   }, [actualizarGastosList])
 
   const generalTotal = async () => {
+
     try {
       const request = await fetch(Global.url + 'total/generartotal/', {
         method: 'POST',
@@ -144,6 +146,7 @@ export const Gastos = () => {
       if (data.status === "success") {
         setSaldos(data.total)
         setTotalGeneral(data)
+        console.log('saldos de gastos', saldos)
 
       }
     } catch (error) {
@@ -168,7 +171,8 @@ export const Gastos = () => {
               <div className="card">
                 <div className="row g-0">
                   <div className="col-md-4 perfil" >
-                    <img src={Global.url + "user/avatar/" + auth.image} className="img-thumbnail" alt="perfil"></img>
+                    {auth.image !== 'default.png' && <img src={Global.url + "user/avatar/" + auth.image} className="img-thumbnail" alt="perfil"></img>}
+                    {auth.image == 'default.png' && <img src={avatar} className="img-thumbnail" alt="perfil"></img>}
                   </div>
                   <div className="col-md-4 card-body pt-5 p-0 text-left">
                     <div className="card-body">
@@ -215,7 +219,7 @@ export const Gastos = () => {
                       <span className="text-xs"></span>
                       <hr className="horizontal dark my-3"></hr>
                       <h5 className="mb-0">
-                        ${saldos.saldoInicial !== undefined && saldos.gastoUtilizado !== undefined ? saldos.saldoInicial - saldos.gastoUtilizado : 0}
+                        ${saldos.saldoActual}
                       </h5>
                     </div>
                   </div>
@@ -245,7 +249,7 @@ export const Gastos = () => {
                           <input type="text" name="description" className="form-control" placeholder="Descripcion" aria-label="description" aria-describedby="description-addon" required onChange={changed} />
                           <input type="number" name="cantidad" className="form-control" placeholder="cantidad" aria-label="cantidad" aria-describedby="cantidad-addon" required onChange={changed} />
                           <input type="number" name="valor" className="form-control" placeholder="valor" aria-label="valor" aria-describedby="valor-addon" required onChange={changed} />
-                          <input type="date" name="fechagasto" className="form-control" placeholder="fecha de gasto" aria-label="fechagasto" aria-describedby="gasto-addon" required onChange={changed} />
+                          <input type="datetime-local" name="fechagasto" className="form-control" placeholder="fecha de gasto" aria-label="fechagasto" aria-describedby="gasto-addon" required onChange={changed} />
                           <input type="text" name="categoria" className="form-control" placeholder="Categoria" aria-label="categoria" aria-describedby="categoria-addon" required disabled value={selectedOption} onChange={changed} />
                           <select name="categoria" value={selectedOption} onChange={eventosDistintos} className='select'>
                             <option value=""   >Seleccionar Categoria</option>

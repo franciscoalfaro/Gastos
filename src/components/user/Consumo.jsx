@@ -3,6 +3,7 @@ import useAuth from '../../hooks/useAuth'
 import ReactTimeAgo from 'react-time-ago'
 import { NavLink } from 'react-router-dom';
 import { Global } from '../../helpers/Global';
+import avatar from '../../assets/img/default.png'
 
 import imgCard from '../../assets/img/small-logos/contabilidad.png'
 
@@ -120,8 +121,9 @@ export const Consumo = ({ actualizarLista, updateTrigger }) => {
                       <tr>
                         <td>
                           <div className="d-flex px-2 py-1">
-                            <div>
-                              <img src={Global.url + "user/avatar/" + auth.image} className="avatar avatar-sm me-3" alt="user1"></img>
+                            <div className='imgTabla'>
+                              {auth.image == 'default.png' && <img src={avatar} className="img-fluid img-thumbnail " alt="Foto de perfil"></img>}
+                              {auth.image != 'default.png' && <img src={Global.url + "user/avatar/" + auth.image} className="img-fluid img-thumbnail" alt="Foto de perfil"></img>}
                             </div>
                             <div className="d-flex flex-column justify-content-center">
                               <h6 className="mb-0 text-sm">{auth.name}</h6>
