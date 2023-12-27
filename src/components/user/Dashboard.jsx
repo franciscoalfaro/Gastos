@@ -311,14 +311,14 @@ export const Dashboard = () => {
                       <input type="text" name="tope1" htmlFor='tope1' className="form-control" placeholder="Primer Tope" aria-label="tope" aria-describedby="tope1-addon" defaultValue={dataUser?.tope1 !== undefined ? dataUser.tope1 : ''} onChange={changed}></input><br></br>
                       <input type="text" name="tope2" htmlFor='tope2' className="form-control" placeholder="Segundo Tope" aria-label="tope" aria-describedby="tope2-addon" defaultValue={dataUser?.tope2 !== undefined ? dataUser.tope2 : ''} onChange={changed}></input><br></br>
                       <input type="text" name="ano" htmlFor='ano' className="form-control" placeholder="Año" aria-label="ano" aria-describedby="ano-addon" defaultValue={dataUser?.ano !== undefined ? dataUser.ano : ''} onChange={changed}></input><br></br>
-                      <div>
-                        <button className="btn bg-gradient-dark mb-0" type="submit">
+                      <div className="">
+                        <button className="btn bg-gradient-dark " type="submit">
                           <i className="fas fa-plus"></i><span>&nbsp;&nbsp;Agregar Saldo</span>
                         </button>
-                        <button className="btn bg-gradient-dark mb-0" type="submit" data-bs-toggle="modal" data-bs-target="#miModalregistrosaldo">
+                        <button className="btn bg-gradient-dark " type="submit" data-bs-toggle="modal" data-bs-target="#miModalregistrosaldo">
                           <i className="fas fa-money-bills"></i><span>&nbsp;&nbsp;Otros Saldos</span>
                         </button>
-                        <button className="btn bg-gradient-dark mb-0" type="submit" data-bs-toggle="modal" data-bs-target="#miModalHistorico">
+                        <button className="btn bg-gradient-dark " type="submit" data-bs-toggle="modal" data-bs-target="#miModalHistorico">
                           <i className="fas fa-eye"></i><span>&nbsp;&nbsp;Historico</span>
                         </button>
                       </div>
@@ -333,18 +333,16 @@ export const Dashboard = () => {
                       <input type="text" name="tope1" htmlFor='tope1' className="form-control" placeholder="Primer Tope" aria-label="tope" aria-describedby="tope1-addon" defaultValue={dataUser?.tope1 !== undefined ? dataUser.tope1 : ''} onChange={changed}></input><br></br>
                       <input type="text" name="tope2" htmlFor='tope2' className="form-control" placeholder="Segundo Tope" aria-label="tope" aria-describedby="tope2-addon" defaultValue={dataUser?.tope2 !== undefined ? dataUser.tope2 : ''} onChange={changed}></input><br></br>
                       <input type="text" name="ano" htmlFor='ano' className="form-control" placeholder="Año" aria-label="ano" aria-describedby="ano-addon" defaultValue={dataUser?.ano !== undefined ? dataUser.ano : ''} onChange={changed}></input><br></br>
-                      <div>
-                        <button className="btn bg-gradient-dark mb-0" type="submit">
-                          <i className="fas fa-sync"></i><span>&nbsp;&nbsp;Actualizar Datos</span>
+                      <div className="">
+                        <button className="btn bg-gradient-dark " type="submit">
+                          <i className="fas fa-plus"></i><span>&nbsp;&nbsp;Agregar Saldo</span>
                         </button>
-                        <button className="btn bg-gradient-dark mb-0" type="submit" data-bs-toggle="modal" data-bs-target="#miModalregistrosaldo">
+                        <button className="btn bg-gradient-dark " type="submit" data-bs-toggle="modal" data-bs-target="#miModalregistrosaldo">
                           <i className="fas fa-money-bills"></i><span>&nbsp;&nbsp;Otros Saldos</span>
                         </button>
-
-                        <button className="btn bg-gradient-dark mb-0" type="submit" data-bs-toggle="modal" data-bs-target="#miModalHistorico">
+                        <button className="btn bg-gradient-dark " type="submit" data-bs-toggle="modal" data-bs-target="#miModalHistorico">
                           <i className="fas fa-eye"></i><span>&nbsp;&nbsp;Historico</span>
                         </button>
-
                       </div>
                     </div>
 
