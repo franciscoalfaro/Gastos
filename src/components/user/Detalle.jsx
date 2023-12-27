@@ -12,13 +12,14 @@ export const Detalle = () => {
 
     const obtenerDetalle = async () => {
         try {
-            const request = await fetch(Global.url + 'total/detalle', {
+            const request = await fetch(Global.url + 'bills/detalle', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': localStorage.getItem('token')
                 }
             })
+            console.log(request)
             const data = await request.json()
             if (data.status === "success") {
                 setDetalle(data.detalleGastos)
@@ -37,8 +38,9 @@ export const Detalle = () => {
             console.error('No se encontró detalle para el mes seleccionado');
             return;
         }
+        console.log(detalleMes)
 
-        console.log(detalle)
+       
    
 
         const content = document.getElementById(`pdfContent-${mes}`);

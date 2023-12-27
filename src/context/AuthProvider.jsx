@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
             setAuth(data.user)
             setLoading(false)
 
-        } else if (data.status === "error") {
+        } else if (data.status === "Error") {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
             navigate('/login');
