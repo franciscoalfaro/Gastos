@@ -66,7 +66,6 @@ export const Gastos = () => {
     e.preventDefault();
     let newGasto = form
 
-    console.log(newGasto)
     if (!newGasto.categoria) {
       Swal.fire({
         title: "Falta la categoria",
