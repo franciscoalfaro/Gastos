@@ -53,8 +53,7 @@ export const AuthProvider = ({ children }) => {
         } else if (data.status === "error") {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
-            navigate('/login');
-
+            setTimeout(() => { window.location.href = "/login" }, 1000);
         }
     }
 

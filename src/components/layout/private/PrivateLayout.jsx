@@ -19,6 +19,7 @@ export const PrivateLayout = () => {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       navigate('/login');
+      setTimeout(() => { window.location.href = "/login" }, 1200);
     }
   }, [auth, navigate]);
 
