@@ -66,27 +66,39 @@ export const Gastos = () => {
     e.preventDefault();
     let newGasto = form
 
+    console.log(newGasto)
+    if (!newGasto.categoria) {
+      Swal.fire({
+        title: "Falta la categoria",
+        text: "Debes de seleccionar una categoria",
+        icon: "question"
+      });
+    } else {
+      const request = await fetch(Global.url + 'bills/creargasto', {
+        method: "POST",
+        body: JSON.stringify(newGasto),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem('token')
 
-    const request = await fetch(Global.url + 'bills/creargasto', {
-      method: "POST",
-      body: JSON.stringify(newGasto),
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem('token')
+        }
+      })
+      const data = await request.json()
+
+      if (data.status === "success") {
+        setActualizarGastosList()
 
       }
-    })
-    const data = await request.json()
 
-    if (data.status === "success") {
-      setActualizarGastosList()
+      const myForm = document.querySelector("#gasto-form")
+      myForm.reset()
 
     }
 
-    const myForm = document.querySelector("#gasto-form")
-    myForm.reset()
-
   }
+
+
+
 
 
   const crearCategoria = async (e) => {
@@ -248,9 +260,9 @@ export const Gastos = () => {
                           <input type="number" name="cantidad" className="form-control" placeholder="cantidad" aria-label="cantidad" aria-describedby="cantidad-addon" required onChange={changed} />
                           <input type="number" name="valor" className="form-control" placeholder="valor" aria-label="valor" aria-describedby="valor-addon" required onChange={changed} />
                           <input type="datetime-local" name="fechagasto" className="form-control" placeholder="fecha de gasto" aria-label="fechagasto" aria-describedby="gasto-addon" required onChange={changed} />
-                          <input type="text" name="categoria" className="form-control" placeholder="Categoria" aria-label="categoria" aria-describedby="categoria-addon" required disabled value={selectedOption} onChange={changed} />
+                          <input type="text" name="categoria" className="form-control" placeholder="Categoria" aria-label="categoria" aria-describedby="categoria-addon" hidden required disabled value={selectedOption} onChange={changed} />
                           <select name="categoria" value={selectedOption} onChange={eventosDistintos} className='select'>
-                            <option value=""   >Seleccionar Categoria</option>
+                            <option value=""   >Categorias</option>
                             {categorias.map((item) => (
                               <option key={item._id} value={item.name} >
                                 {item.name}
