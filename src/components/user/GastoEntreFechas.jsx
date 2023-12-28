@@ -16,7 +16,10 @@ export const GastoEntreFechas = () => {
             const fechaHoy = new Date().toISOString().split('T')[0]; // Fecha actual
             const fechaUnaSemanaAtras = new Date(new Date().getTime() - (7 * 24 * 60 * 60 * 1000)).toISOString().split('T')[0]; // se setea desde una semana atras
             setFechas({ fechaInicial: fechaUnaSemanaAtras, fechaFinal: fechaHoy });
+        }else{
+             busquedaFechas({ value: fechas.fechaInicial }, { value: fechas.fechaFinal });
         }
+       
     }, [fechas]);
 
     //se setean las fecha inicial y final (campo:fechaInicial o fin, y el valor de la fecha)
@@ -62,7 +65,7 @@ export const GastoEntreFechas = () => {
                     <i className="far fa-calendar-alt me-2"></i>
                     <input type="date" id='fechaInicial' name="fechaInicial" className="form-control" placeholder="fechaInicial" aria-label="fechaInicial" aria-describedby="fechaInicial-addon" required value={fechas.fechaInicial} onChange={(e) => actualizarFechas('fechaInicial', e.target.value)} />
                     <input type="date" id='fechaFinal' name="fechaFinal" className="form-control" placeholder="fechaFinal" aria-label="fechaFinal" aria-describedby="fechaFinal-addon" required value={fechas.fechaFinal} onChange={(e) => actualizarFechas('fechaFinal', e.target.value)} />
-                    <button className='btn bg-gradient-dark mb-0' onClick={() => busquedaFechas(document.getElementById('fechaInicial'), document.getElementById('fechaFinal'))}>traer</button>
+                    <button className='btn bg-gradient-dark mb-0' onClick={() => busquedaFechas({ value: fechas.fechaInicial }, { value: fechas.fechaFinal })}>Traer</button>
                 </div>
                 <div className="card-body pt-4 p-3">
                     <ul className="list-group">

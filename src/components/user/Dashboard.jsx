@@ -102,7 +102,7 @@ export const Dashboard = () => {
     if (data.status === "success") {
       setActualizacion(prevState => !prevState);
       setCrearSaldo(data)
-      console.log(data)
+  
 
     } else {
       console.error('Error al obtener los datos:', data.message);
@@ -335,7 +335,7 @@ export const Dashboard = () => {
                       <input type="text" name="ano" htmlFor='ano' className="form-control" placeholder="Año" aria-label="ano" aria-describedby="ano-addon" defaultValue={dataUser?.ano !== undefined ? dataUser.ano : ''} onChange={changed}></input><br></br>
                       <div className="">
                         <button className="btn bg-gradient-dark " type="submit">
-                          <i className="fas fa-plus"></i><span>&nbsp;&nbsp;Agregar Saldo</span>
+                          <i className="fas fa-sync"></i><span>&nbsp;&nbsp;Actualizar Saldo</span>
                         </button>
                         <button className="btn bg-gradient-dark " type="submit" data-bs-toggle="modal" data-bs-target="#miModalregistrosaldo">
                           <i className="fas fa-money-bills"></i><span>&nbsp;&nbsp;Otros Saldos</span>

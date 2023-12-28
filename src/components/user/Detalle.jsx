@@ -19,7 +19,7 @@ export const Detalle = () => {
                     'Authorization': localStorage.getItem('token')
                 }
             })
-            console.log(request)
+            
             const data = await request.json()
             if (data.status === "success") {
                 setDetalle(data.detalleGastos)
@@ -38,16 +38,12 @@ export const Detalle = () => {
             console.error('No se encontró detalle para el mes seleccionado');
             return;
         }
-        console.log(detalleMes)
-
-       
-   
-
+      
         const content = document.getElementById(`pdfContent-${mes}`);
 
         // Crear HTML para el PDF con el detalle del mes seleccionado
         const detalleHTML = `
-                <h6 style="text-align: center; margin-bottom: 10px;" className="mb-1 text-dark font-weight-bold text-sm"> Año ${detalleMes.ano} Mes ${detalleMes.mes}</h6>
+                <h6 style="text-align: center; margin-bottom: 10px;" className="mb-1 text-dark font-weight-bold text-sm"> ${detalleMes.mes} - ${detalleMes.ano} - Saldo Inicial $ ${detalleMes.saldoInicial.toLocaleString('es-ES')}</h6>
                 <table style="width: 100%; border-collapse: collapse; text-align: center;">
                     <thead style="background-color: lightgray;">
                         <tr>
@@ -62,7 +58,7 @@ export const Detalle = () => {
                         ${detalleMes.gastos.map((gasto) => `
                             <tr key=${gasto._id}>
                                 <td style="border: 1px solid black; padding: 8px;">${gasto.name}</td>
-                                <td style="border: 1px solid black; padding: 8px;">$${gasto.valor}</td>
+                                <td style="border: 1px solid black; padding: 8px;">$${gasto.valor.toLocaleString('es-ES')}</td>
                                 <td style="border: 1px solid black; padding: 8px;">${gasto.description}</td>
                                 <td style="border: 1px solid black; padding: 8px;">${gasto.cantidad}</td>
                                 <td style="border: 1px solid black; padding: 8px;">${gasto.fechagasto.split("T")[0]}</td>
@@ -71,7 +67,7 @@ export const Detalle = () => {
                         <tr>
                         <td colspan="4"></td>
                         <td style="text-align: right; border: 1px solid black; padding: 8px;">
-                            <p style="margin-bottom: 0; font-weight: bold;">Gasto Total $ ${detalleMes.totalGastos}</p>
+                            <p style="margin-bottom: 0; font-weight: bold;">Gasto Total $ ${detalleMes.totalGastos.toLocaleString('es-ES')}</p>
                         </td>
                     </tr>
                     </tbody>
@@ -96,7 +92,7 @@ export const Detalle = () => {
                                 <li key={`${details.ano}-${details.mes}`} className="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                     <div className="d-flex flex-column">
                                         <h6 className="mb-1 text-dark font-weight-bold text-sm">{details.mes}</h6>
-                                        <span className="text-xs">${details.totalGastos}</span>
+                                        <span className="text-xs">${details.totalGastos.toLocaleString('es-ES')}</span>
                                     </div>
                                     <div className="d-flex align-items-center text-sm">
                                         <button className="btn btn-link text-dark text-sm mb-0 px-0 ms-4" onClick={() => generatePDF(details.mes)}>
