@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import { Global } from '../../helpers/Global';
 
-export const HistoricoSaldos = () => {
-    const [historico, setHistorico] = useState([]);
+export const EliminarCategoriasModal = () => {
+    const [historicoCategorias, setHistoricoCategorias] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
 
-
-    const obtenerSaldos = async (page = 1) => {
+    const obtenerCategorias = async (page = 1) => {
         try {
-            const response = await fetch(Global.url + 'saldo/list/' + page, {
+            const response = await fetch(Global.url + 'category/list/' + page, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -19,39 +18,38 @@ export const HistoricoSaldos = () => {
 
             const data = await response.json();
 
-
             if (data.status === "success") {
-         
-                setHistorico(data.total);
+                
+                setHistoricoCategorias(data.categorias);
                 setCurrentPage(data.page);
                 setTotalPages(Math.ceil(data.totalDocs / data.itempage));
 
             }
         } catch (error) {
-            console.error("Error al obtener los saldos:", error);
+            console.error("Error al obtener las categorias:", error);
         }
     };
 
     useEffect(() => {
-        obtenerSaldos();
-    }, []); // Llamar a obtenerSaldos al montar el componente
+        obtenerCategorias();
+    }, []); // Llamar a obtenerCategorias al montar el componente
 
     const paginaAnterior = () => {
         if (currentPage > 1) {
-            obtenerSaldos(currentPage - 1);
+            obtenerCategorias(currentPage - 1);
         }
     };
 
     const paginaSiguiente = () => {
         if (currentPage < totalPages) {
-            obtenerSaldos(currentPage + 1);
+            obtenerCategorias(currentPage + 1);
         }
     };
 
 
-    const EliminarSaldo = async (saldoId) => {
+    const EliminarCategoria = async (categoriaId) => {
         try {
-            const request = await fetch(Global.url + "saldo/delete/" + saldoId, {
+            const request = await fetch(Global.url + "category/delete/" + categoriaId, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -61,8 +59,9 @@ export const HistoricoSaldos = () => {
 
             const data = await request.json()
             if (data.status === "success") {
-                setHistorico(data.total);
-                obtenerSaldos();
+                setHistoricoCategorias(data.total);
+                obtenerCategorias();
+
 
             } else {
                 console.log(data.message)
@@ -75,29 +74,30 @@ export const HistoricoSaldos = () => {
 
     }
     return (
+
         <>
             <div className="modal-body">
                 <table className="historico-table">
                     <thead className="bg-gradient-dark">
                         <tr>
-                            <th>Monto</th>
-                            <th>Mes</th>
-                            <th>Año</th>
+                            <th>nombre</th>
+                            <th>descripcion</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {historico && historico.map((saldo) => (
-                            <tr key={saldo._id}>
-                                <td>{saldo.montoMensual}</td>
-                                <td>{saldo.mes}</td>
-                                <td>{saldo.ano}</td>
+                        {historicoCategorias && historicoCategorias.map((categoria) => (
+                            <tr key={categoria._id}>
+                                <td>{categoria.name}</td>
+                                <td>{categoria.description}</td>
                                 <td>
-                                <div className="text-center">
-                                    <button className="btn bg-gradient-dark mb-0" onClick={() => EliminarSaldo(saldo._id)}>
-                                        <i className="fas fa-minus"></i><span>&nbsp;&nbsp;</span>
-                                    </button>
-                                </div>
+                                    {categoria.name !== "Sin Categoría" && ( 
+                                        <div className="text-center">
+                                            <button className="btn bg-gradient-dark mb-0" onClick={() => EliminarCategoria(categoria._id)}>
+                                                <i className="fas fa-minus"></i><span>&nbsp;&nbsp;</span>
+                                            </button>
+                                        </div>
+                                    )}
                                 </td>
                             </tr>
                         ))}
@@ -112,5 +112,7 @@ export const HistoricoSaldos = () => {
                 </div>
             </div>
         </>
-    );
-};
+
+
+    )
+}

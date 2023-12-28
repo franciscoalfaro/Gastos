@@ -7,6 +7,7 @@ import { Global } from '../../helpers/Global';
 import html2pdf from 'html2pdf.js';
 import { Detalle } from './Detalle';
 import avatar from '../../assets/img/default.png'
+import { EliminarCategoriasModal } from './EliminarCategoriasModal';
 
 
 
@@ -290,7 +291,8 @@ export const Gastos = () => {
                         <h6 className="mb-0">Crear Nueva Categoria</h6>
                       </div>
                       <div className="col-6 text-end">
-                        <button className="btn bg-gradient-dark mb-0" type="submit"><i className="fas fa-plus"></i><span>&nbsp;&nbsp;Agregar Categoria</span></button>
+                        <button className="btn bg-gradient-dark" type="submit"><i className="fas fa-plus"></i><span>&nbsp;&nbsp;Agregar Categoria</span></button>
+                        <button className="btn bg-gradient-dark" type="submit" data-bs-toggle="modal" data-bs-target="#miModalCategoria"><i className="fas fa-minus"></i><span>&nbsp;&nbsp;CATEGORIAS</span></button>
                       </div>
                     </div>
                   </div>
@@ -308,8 +310,20 @@ export const Gastos = () => {
               </div>
             </form>
             {/* Fin seccion para agregar categorias*/}
+          </div>
+        </div>
 
-
+        <div className="modal" id="miModalCategoria" tabIndex="-1" >
+          <div className="modal-dialog" >
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Historico de Categorias</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body">
+                <EliminarCategoriasModal></EliminarCategoriasModal>
+              </div>
+            </div>
           </div>
         </div>
 
