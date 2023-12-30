@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Global } from '../../helpers/Global';
 
-export const EliminarCategoriasModal = () => {
+export const EliminarCategoriasModal = ({forceUpdate }) => {
     const [historicoCategorias, setHistoricoCategorias] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
@@ -32,7 +32,7 @@ export const EliminarCategoriasModal = () => {
 
     useEffect(() => {
         obtenerCategorias();
-    }, []); // Llamar a obtenerCategorias al montar el componente
+    }, [forceUpdate]); // Llamar a obtenerCategorias al montar el componente
 
     const paginaAnterior = () => {
         if (currentPage > 1) {
@@ -61,6 +61,7 @@ export const EliminarCategoriasModal = () => {
             if (data.status === "success") {
                 setHistoricoCategorias(data.total);
                 obtenerCategorias();
+                forceUpdate()
 
 
             } else {

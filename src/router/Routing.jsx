@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Link, Navigate, Route, Routes } from 'react-router-dom'
 import { AuthProvider } from '../context/AuthProvider'
 import { PublicLayout } from '../components/layout/public/PublicLayout'
 import { Login } from '../components/user/Login'
@@ -28,7 +28,7 @@ export const Routing = () => {
                     </Route>
 
                     <Route path='/auth' element={<PrivateLayout></PrivateLayout>}>
-                        <Route index element={<Dashboard></Dashboard>}></Route>
+                        <Route index element={<Navigate to="dashboard"></Navigate>}></Route>
                         <Route path='dashboard' element={<Dashboard></Dashboard>}></Route>
                         <Route path='consumo' element={<Consumo></Consumo>}></Route>
                         <Route path='gastos' element={<Gastos></Gastos>}></Route>

@@ -25,6 +25,8 @@ export const Gastos = () => {
   const [totalGeneral, setTotalGeneral] = useState([])
   const [saldos, setSaldos] = useState([])
 
+  const [forceUpdate, setForceUpdate] = useState(false);
+
   const actualizarListaDeGastos = () => {
     setActualizarGastosList(prevState => !prevState);
     setUpdateTrigger(prevState => !prevState);
@@ -321,7 +323,7 @@ export const Gastos = () => {
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div className="modal-body">
-                <EliminarCategoriasModal></EliminarCategoriasModal>
+                <EliminarCategoriasModal forceUpdate={() => setForceUpdate(!forceUpdate)}></EliminarCategoriasModal>
               </div>
             </div>
           </div>
