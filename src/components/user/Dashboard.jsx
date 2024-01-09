@@ -158,7 +158,7 @@ export const Dashboard = () => {
                 <div className="row">
                   <div className="col-8">
                     <div className="numbers">
-                      <p className="text-sm mb-0 text-capitalize font-weight-bold">Saldo Disponible</p>
+                      <p className="text-sm mb-0 text-capitalize font-weight-bold">Mi Saldo Mensual</p>
                       <h5 className="font-weight-bolder mb-0">$
                         {dataUser?.montoMensual !== undefined ? dataUser.montoMensual : 0}
                       </h5>

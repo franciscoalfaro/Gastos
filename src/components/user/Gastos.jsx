@@ -42,7 +42,7 @@ export const Gastos = () => {
 
   const listCategorias = async () => {
     try {
-      const request = await fetch(Global.url + 'category/list', {
+      const request = await fetch(Global.url + 'category/listcategoria', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -51,6 +51,7 @@ export const Gastos = () => {
       })
 
       const data = await request.json()
+      console.log(data)
 
       if (data.status === "success") {
         setCategorias(data.categorias)
