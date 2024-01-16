@@ -25,11 +25,13 @@ export const Dashboard = () => {
   const { form, changed } = useForm()
   const [actualizacion, setActualizacion] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState('');
+  const [indicador, setIndicador] = useState([])
 
 
 
   useEffect(() => {
     gastoData()
+    indicadoresEconomicos()
   }, [actualizacion])
 
 
@@ -57,8 +59,6 @@ export const Dashboard = () => {
     }
   }
 
-
-
   //la consulta obtiene los ultimos 30 desde la api
   const gastoData = async () => {
     try {
@@ -80,8 +80,6 @@ export const Dashboard = () => {
     }
   }
 
-
-
   const registrarSaldo = async (e) => {
 
     e.preventDefault();
@@ -102,7 +100,7 @@ export const Dashboard = () => {
     if (data.status === "success") {
       setActualizacion(prevState => !prevState);
       setCrearSaldo(data)
-  
+
 
     } else {
       console.error('Error al obtener los datos:', data.message);
@@ -129,8 +127,16 @@ export const Dashboard = () => {
     const data = await request.json()
 
     if (data.status == "success") {
-
       setActualizacion(prevState => !prevState);
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'saldo actualizado Correctamente',
+        showConfirmButton: true,
+      });
+      setTimeout(() => { window.location.reload() }, 100);
+
+      
 
     } else {
       console.error('Error al obtener los datos:', data.message);
@@ -140,12 +146,34 @@ export const Dashboard = () => {
   }
 
 
-
-
   const capitalizeFirstLetter = (name) => {
     return name.replace(/^\w/, (c) => c.toUpperCase());
   };
 
+  //llamado para obtener indicadores economicos
+
+  const indicadoresEconomicos = async () => {
+    try {
+      const request = await fetch(Global.url + "indicador/economico", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem("token")
+        }
+
+      })
+      const data = await request.json()
+      console.log(data.map((dolarhoy, index)))
+      if (data.status === "success") {
+        setIndicador(data)
+
+      }
+
+
+    } catch (error) {
+
+    }
+  }
 
   return (
     <>
@@ -278,14 +306,30 @@ export const Dashboard = () => {
 
         <div className="row mt-4">
           <div className="col-lg-8 mb-lg-0 mb-4">
-            <div className="card z-index-2">
-              <div className="card-header pb-0">
-                <h5>Hola {capitalizeFirstLetter(auth.name)}</h5>
-                <p className="text-sm">
-                  <span className="font-weight-bold"></span>
-                </p>
-                <h6>Tu gasto en los 12 meses a sido</h6>
+            <div className="card">
+              <div className="card-header">
+                <div className="row">
+                  <div className="col-sm-6 mb-3 mb-sm-0">
+                    <div className="card">
+                      <div className="card-body">
+                        <h5>Hola {capitalizeFirstLetter(auth.name)}</h5>
+                        <p className="card-text">Tu gasto en los 12 meses a sido</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="col-sm-3 mb-3 mb-sm-0">
+                    <div className="card">
+                      <div className="card-body">
+                        <h5 className="card-title"></h5>
+                        <p className="card-text">Dolar observador ayer  </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+
+
               <div className="card-body p-3">
                 <div className="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
                   <div className="chart">
@@ -315,10 +359,10 @@ export const Dashboard = () => {
                         <button className="btn bg-gradient-dark " type="submit">
                           <i className="fas fa-plus"></i><span>&nbsp;&nbsp;Agregar Saldo</span>
                         </button>
-                        <button className="btn bg-gradient-dark " type="submit" data-bs-toggle="modal" data-bs-target="#miModalregistrosaldo">
+                        <button className="btn bg-gradient-dark " type="button" data-bs-toggle="modal" data-bs-target="#miModalregistrosaldo">
                           <i className="fas fa-money-bills"></i><span>&nbsp;&nbsp;Otros Saldos</span>
                         </button>
-                        <button className="btn bg-gradient-dark " type="submit" data-bs-toggle="modal" data-bs-target="#miModalHistorico">
+                        <button className="btn bg-gradient-dark " type="button" data-bs-toggle="modal" data-bs-target="#miModalHistorico">
                           <i className="fas fa-eye"></i><span>&nbsp;&nbsp;Historico</span>
                         </button>
                       </div>
@@ -337,10 +381,10 @@ export const Dashboard = () => {
                         <button className="btn bg-gradient-dark " type="submit">
                           <i className="fas fa-sync"></i><span>&nbsp;&nbsp;Actualizar Saldo</span>
                         </button>
-                        <button className="btn bg-gradient-dark " type="submit" data-bs-toggle="modal" data-bs-target="#miModalregistrosaldo">
+                        <button className="btn bg-gradient-dark " type="button" data-bs-toggle="modal" data-bs-target="#miModalregistrosaldo">
                           <i className="fas fa-money-bills"></i><span>&nbsp;&nbsp;Otros Saldos</span>
                         </button>
-                        <button className="btn bg-gradient-dark " type="submit" data-bs-toggle="modal" data-bs-target="#miModalHistorico">
+                        <button className="btn bg-gradient-dark " type="button" data-bs-toggle="modal" data-bs-target="#miModalHistorico">
                           <i className="fas fa-eye"></i><span>&nbsp;&nbsp;Historico</span>
                         </button>
                       </div>
