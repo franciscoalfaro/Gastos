@@ -100,7 +100,6 @@ export const GastosList = ({ actualizarLista, updateTrigger }) => {
                   <ul className="list-group" key={gasto._id}>
                     <li className="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
                       <div className="d-flex flex-column">
-                        <h6 className="mb-3 text-sm">Francisco Alfaro</h6>
                         <span className="mb-2 text-xs">Nombre <span className="text-dark font-weight-bold ms-sm-2">{gasto.name}</span></span>
                         <span className="mb-2 text-xs">description <span className="text-dark font-weight-bold ms-sm-2">{gasto.description}</span></span>
                         <span className="mb-2 text-xs">cantidad <span className="text-dark ms-sm-2 font-weight-bold">{gasto.cantidad}</span></span>

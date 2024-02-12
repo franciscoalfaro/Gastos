@@ -136,7 +136,7 @@ export const Dashboard = () => {
       });
       setTimeout(() => { window.location.reload() }, 100);
 
-      
+
 
     } else {
       console.error('Error al obtener los datos:', data.message);
@@ -163,9 +163,10 @@ export const Dashboard = () => {
 
       })
       const data = await request.json()
-      console.log(data.map((dolarhoy, index)))
+
       if (data.status === "success") {
         setIndicador(data)
+        console.log(data)
 
       }
 
@@ -174,6 +175,7 @@ export const Dashboard = () => {
 
     }
   }
+
 
   return (
     <>
@@ -318,14 +320,27 @@ export const Dashboard = () => {
                     </div>
                   </div>
 
-                  <div className="col-sm-3 mb-3 mb-sm-0">
+                  <div className="col-sm-4 mb-3 mb-sm-0">
                     <div className="card">
                       <div className="card-body">
                         <h5 className="card-title"></h5>
-                        <p className="card-text">Dolar observador ayer  </p>
+                        {indicador.dolarObsHoy && (
+                          <div className="card-text">
+                            <p>Dolar observador hoy {indicador.dolarObsHoy.valor}</p>
+
+                          </div>
+                        )}
+                        {indicador.dolarObsAyer && (
+                          <div className="card-text">
+                            <p>Dolar observador ayer {indicador.dolarObsAyer.valor}</p>
+                          
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
+
+
                 </div>
               </div>
 
