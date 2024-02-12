@@ -166,10 +166,7 @@ export const Dashboard = () => {
 
       if (data.status === "success") {
         setIndicador(data)
-        console.log(data)
-
       }
-
 
     } catch (error) {
 
@@ -184,7 +181,6 @@ export const Dashboard = () => {
           <div className="col-xl-3 col-sm-6 mb-lg-0 mb-4">
             <div className="card">
               <div className="card-body p-3">
-
                 <div className="row">
                   <div className="col-8">
                     <div className="numbers">
