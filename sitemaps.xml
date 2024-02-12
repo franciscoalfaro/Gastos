@@ -1,0 +1,40 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Rutas públicas -->
+    <url>
+        <loc>https://tudominio.com/</loc>
+    </url>
+    <url>
+        <loc>https://tudominio.com/login</loc>
+    </url>
+    <url>
+        <loc>https://tudominio.com/registro</loc>
+    </url>
+    <url>
+        <loc>https://tudominio.com/recuperar</loc>
+    </url>
+    <url>
+        <loc>https://tudominio.com/terminoycondiciones</loc>
+    </url>
+
+    <!-- Rutas privadas -->
+    <url>
+        <loc>https://tudominio.com/auth/dashboard</loc>
+    </url>
+    <url>
+        <loc>https://tudominio.com/auth/consumo</loc>
+    </url>
+    <url>
+        <loc>https://tudominio.com/auth/gastos</loc>
+    </url>
+    <url>
+        <loc>https://tudominio.com/auth/logout</loc>
+    </url>
+    <url>
+        <loc>https://tudominio.com/auth/perfil</loc>
+    </url>
+
+    <!-- Ruta de error 404 -->
+    <url>
+        <loc>https://tudominio.com/</loc>
+    </url>
+</urlset>
